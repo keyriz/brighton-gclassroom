@@ -8,6 +8,4 @@ After:
 # See http://doc.silverstripe.org/framework/en/topics/configuration
 # Caution: Indentation through two spaces, not tabs
 SSViewer:
-  theme: 'simple'
-Debug:
-  friendly_error_httpcode: true
+  theme: 'one-ring'
