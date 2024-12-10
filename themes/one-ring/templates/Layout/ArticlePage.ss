@@ -25,9 +25,9 @@
                     <ul>
                         <li><i class="fa fa-calendar"></i> $Date.Long</li>
                         <li><i class="fa fa-comments-o"></i> 3 Comments</li>
-                        <li><i
-                            class="fa fa-tags"></i> <% loop $Categories %>$Title<% if not $Last %>
-                            ,<% end_if %><% end_loop %>
+                        <li>
+                            <i class="fa fa-tags"></i>
+                            <% loop $Categories %>$Title<% if not $Last %>,<% end_if %><% end_loop %>
                         </li>
                     </ul>
 

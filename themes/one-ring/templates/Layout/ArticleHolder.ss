@@ -29,7 +29,10 @@
                                         <ul class="top-info">
                                             <li><i class="fa fa-calendar"></i>$Date.Long</li>
                                             <li><i class="fa fa-comments-o"></i> 2</li>
-                                            <li><i class="fa fa-tags"></i>Categories</li>
+                                            <li>
+                                                <i class="fa fa-tags"></i>
+                                                <% loop $Categories %>$Title<% if not $Last %>, <% end_if %><% end_loop %>
+                                            </li>
                                         </ul>
                                         <h3>
                                             <a href="$Link">$Title</a>
