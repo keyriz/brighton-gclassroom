@@ -17,6 +17,10 @@ class ArticlePage extends Page
         'Categories' => 'ArticleCategory',
     );
 
+    private static $has_many = array(
+        'Comments' => 'ArticleComment',
+    );
+
     private static $can_be_root = false;
 
     public function getCMSFields()
@@ -44,5 +48,52 @@ class ArticlePage extends Page
 
 class ArticlePage_Controller extends Page_Controller
 {
+    private static $allowed_actions = array(
+        'CommentForm'
+    );
 
+    public function CommentForm()
+    {
+        $form = Form::create(
+            $this,
+            __FUNCTION__,
+            FieldList::create(
+                TextField::create('Name', ''),
+                EmailField::create('Email', ''),
+                TextAreaField::create('Comment', '')
+            ),
+            FieldList::create(
+                FormAction::create('handleComment', 'Post Comment')->setUseButtonTag(true)->addExtraClass('btn btn-default-color btn-lg')
+            ),
+            RequiredFields::create('Name', 'Email', 'Comment')
+        )->addExtraClass('form-style');
+
+        foreach ($form->Fields() as $field) {
+            $field->addExtraClass('form-control')->setAttribute('placeholder', $field->getName() . '*');
+        }
+
+        return $form;
+    }
+
+    public function handleComment($data, $form)
+    {
+        Session::set("FormData.{$form->getName()}.data", $data);
+
+        $existing = $this->Comments()->filter('Comment', $data['Comment']);
+
+        if ($existing->exists() && strlen($data['Comment']) > 20) {
+            $form->sessionMessage('Comment already exists.', 'warning');
+            return $this->redirectBack();
+        }
+
+        $comment = ArticleComment::create();
+        $comment->ArticlePageID = $this->ID;
+        $form->saveInto($comment);
+        $comment->write();
+
+        Session::clear("FormData.{$form->getName()}.data");
+        $form->sessionMessage('Your comment has been posted.', 'good');
+
+        return $this->redirectBack();
+    }
 }
