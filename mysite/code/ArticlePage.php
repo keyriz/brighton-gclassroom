@@ -72,7 +72,9 @@ class ArticlePage_Controller extends Page_Controller
             $field->addExtraClass('form-control')->setAttribute('placeholder', $field->getName() . '*');
         }
 
-        return $form;
+        $data = Session::get("FormData.{$form->getName()}.data");
+
+        return $data ? $form->loadDataFrom($data) : $form;
     }
 
     public function handleComment($data, $form)
