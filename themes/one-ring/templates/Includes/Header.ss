@@ -41,7 +41,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <a href="index.html" class="nav-logo"><img src="$ThemeDir/images/logo.png" alt="One Ring Rentals" /></a>
+                    <a href="$AbsoluteBaseURL" class="nav-logo"><img src="$ThemeDir/images/logo.png" alt="One Ring Rentals"/></a>
                     <!-- BEGIN SEARCH -->
                     <div id="sb-search" class="sb-search">
                         <form>

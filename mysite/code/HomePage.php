@@ -11,4 +11,9 @@ class HomePage_Controller extends Page_Controller
     {
         return ArticlePage::get()->sort('Created', 'DESC')->limit($count);
     }
+
+    public function FeaturedProperties($count = 3)
+    {
+        return Property::get()->filter(array('FeaturedOnHomepage' => true))->limit($count);
+    }
 }
