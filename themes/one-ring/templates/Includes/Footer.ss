@@ -5,18 +5,11 @@
             <div class="block col-sm-3">
                 <a href="#"><img src="$ThemeDir/images/logo.png" alt="One Ring Rentals"/></a>
                 <br><br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam commodo eros nibh, et dictum elit
-                    tincidunt eget. Pellentesque volutpat quam dignissim, convallis elit id, efficitur sem. Vivamus ac
-                    scelerisque sem. Aliquam sed enim rutrum nibh gravida pellentesque nec at metus.</p>
+                <p>$SiteConfig.FooterContent</p>
             </div>
             <div class="block col-sm-3">
                 <h3>Helpful Links</h3>
                 <ul class="footer-links">
-                    <% if $Menu(2) %>
-                        <% loop $Menu(2) %>
-                            <li><a class="$LinkingMode" href="$Link">$MenuTitle</a></li>
-                        <% end_loop %>
-                    <% end_if %>
                     <li><a href="#">All rentals</a></li>
                     <li><a href="#">List your rental</a></li>
                     <li><a href="#">Read our FAQs</a></li>
@@ -84,12 +77,20 @@
 
                     <!-- BEGIN SOCIAL NETWORKS -->
                     <ul class="social-networks">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <% with $SiteConfig %>
+                            <% if $FacebookLink %>
+                                <li><a href="$FacebookLink"><i class="fa fa-facebook"></i></a></li>
+                            <% end_if %>
+                            <% if $TwitterLink %>
+                                <li><a href="$TwitterLink"><i class="fa fa-twitter"></i></a></li>
+                            <% end_if %>
+                            <% if $GoogleLink %>
+                                <li><a href="$GoogleLink"><i class="fa fa-instagram"></i></a></li>
+                            <% end_if %>
+                            <% if $YouTubeLink %>
+                                <li><a href="$YouTubeLink"><i class="fa fa-youtube"></i></a></li>
+                            <% end_if %>
+                        <% end_with %>
                     </ul>
                     <!-- END SOCIAL NETWORKS -->
 
