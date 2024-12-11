@@ -22,5 +22,22 @@ class RegionsPage extends Page
 
 class RegionsPage_Controller extends Page_Controller
 {
+    private static $allowed_actions = array(
+        'show',
+    );
 
+    public function show(SS_HTTPRequest $request)
+    {
+        $regionID = $request->param('ID');
+        $region = Region::get()->byID($regionID);
+
+        if (!$region) {
+            return $this->httpError(404, "Region ID $regionID not found");
+        }
+
+        return array(
+            'Region' => $region,
+            'Title' => $region->Title
+        );
+    }
 }

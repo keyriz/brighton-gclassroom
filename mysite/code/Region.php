@@ -4,7 +4,7 @@ class Region extends DataObject
 {
     private static $db = array(
         'Title' => 'Varchar',
-        'Description' => 'Text',
+        'Description' => 'HTMLText',
     );
 
     private static $has_one = array(
@@ -21,7 +21,7 @@ class Region extends DataObject
     public function getGridThumbnail()
     {
         if ($this->Photo()->exists()) {
-            return $this->Photo()->setWidth(100);
+            return $this->Photo()->SetWidth(100);
         }
 
         return 'No Image';
@@ -31,7 +31,7 @@ class Region extends DataObject
     {
         $fields = FieldList::create(
             TextField::create('Title'),
-            TextAreaField::create('Description'),
+            HtmlEditorField::create('Description'),
             $upload = UploadField::create('Photo')
         );
 
@@ -39,5 +39,15 @@ class Region extends DataObject
         $upload->setFolderName('regions-photos');
 
         return $fields;
+    }
+
+    public function LinkingMode()
+    {
+        return Controller::curr()->getRequest()->param('ID') == $this->ID ? 'current' : 'link';
+    }
+
+    public function Link()
+    {
+        return $this->RegionsPage()->Link('show/' . $this->ID);
     }
 }

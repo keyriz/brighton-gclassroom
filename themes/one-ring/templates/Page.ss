@@ -7,7 +7,7 @@
 <head>
     <% base_tag %>
     $MetaTag(false)
-    <title>$Title</title>
+    <title>One Ring Rentals - $Title</title>
     <meta charset="utf-8"/>
 
     <!-- Page Title -->
