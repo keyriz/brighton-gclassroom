@@ -34,35 +34,44 @@ class ArticleHolder extends Page
 
 	public function ArchiveDates()
 	{
-		$list  = ArrayList::create();
-		$stage = Versioned::current_stage();
+		try {
+			$list  = ArrayList::create();
+			$query = new SQLQuery(array());
+			$query->selectField("DATE_FORMAT(`Date`,'%Y_%M_%m')", "DateString")
+				->setFrom("ArticlePage_Live")
+				->setOrderBy("DateString", "ASC")
+				->setDistinct(true);
 
-		$query = new SQLQuery(array());
-		$query->selectField("DATE_FORMAT(`Date`,'%Y_%M_%m')", "DateString")
-			->setFrom("ArticlePage_Live")
-			->setOrderBy("Date", "ASC")
-			->setDistinct(true);
+			$result = $query->execute();
 
-		$result = $query->execute();
+			if ($result) {
+				while ($record = $result->nextRecord()) {
+					list($year, $monthName, $monthNumber) = explode('_', $record['DateString']);
 
-		if ($result) {
-			while ($record = $result->nextRecord()) {
-				list($year, $monthName, $monthNumber) = explode('_', $record['DateString']);
-
-				$list->push(ArrayData::create(array(
-					'Year'         => $year,
-					'MonthName'    => $monthName,
-					'MonthNumber'  => $monthNumber,
-					'Link'         => $this->Link("date/$year/$monthNumber"),
-					'ArticleCount' => ArticlePage::get()->where("
+					$list->push(ArrayData::create(array(
+						'Year'         => $year,
+						'MonthName'    => $monthName,
+						'MonthNumber'  => $monthNumber,
+						'Link'         => $this->Link("date/$year/$monthNumber"),
+						'ArticleCount' => ArticlePage::get()->where("
 							DATE_FORMAT(`Date`,'%Y%m') = '{$year}{$monthNumber}'
 							AND ParentID = {$this->ID}
 						")->count()
-				)));
+					)));
+				}
 			}
-		}
 
-		return $list;
+			return $list;
+		} catch (Exception $e) {
+			$logMessage = $e->getMessage() . "\n";
+			$logMessage .= "File: " . $e->getFile() . "\n";
+			$logMessage .= "Line: " . $e->getLine() . "\n";
+			$logMessage .= "Trace: " . $e->getTraceAsString() . "\n\n";
+
+			SS_Log::log($logMessage, SS_Log::ERR);
+
+			return null;
+		}
 	}
 }
 
@@ -145,6 +154,7 @@ class ArticleHolder_Controller extends Page_Controller
 
 	public function date(SS_HTTPRequest $r)
 	{
+		SS_Log::log('This is a test error message', SS_Log::ERR);
 		$year  = $r->param('ID');
 		$month = $r->param('OtherID');
 
