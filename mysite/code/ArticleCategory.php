@@ -2,22 +2,29 @@
 
 class ArticleCategory extends DataObject
 {
-    private static $db = array(
-        'Title' => 'Varchar',
-    );
+	private static $db = array(
+		'Title' => 'Varchar',
+	);
 
-    private static $has_one = array(
-        'ArticleHolder' => 'ArticleHolder',
-    );
+	private static $has_one = array(
+		'ArticleHolder' => 'ArticleHolder',
+	);
 
-    private static $belongs_many_many = array(
-        'Articles' => 'ArticlePage',
-    );
+	private static $belongs_many_many = array(
+		'Articles' => 'ArticlePage',
+	);
 
-    public function getCMSFields()
-    {
-        return FieldList::create(
-            TextField::create('Title')
-        );
-    }
+	public function getCMSFields()
+	{
+		return FieldList::create(
+			TextField::create('Title')
+		);
+	}
+
+	public function Link()
+	{
+		return $this->ArticleHolder()->Link(
+			'category/' . $this->ID
+		);
+	}
 }

@@ -2,52 +2,67 @@
 
 class Region extends DataObject
 {
-    private static $db = array(
-        'Title' => 'Varchar',
-        'Description' => 'HTMLText',
-    );
+	private static $db = array(
+		'Title'       => 'Varchar',
+		'Description' => 'HTMLText',
+	);
 
-    private static $has_one = array(
-        'Photo' => 'Image',
-        'RegionsPage' => 'RegionsPage'
-    );
+	private static $has_one = array(
+		'Photo'       => 'Image',
+		'RegionsPage' => 'RegionsPage'
+	);
 
-    private static $summary_fields = array(
-        'GridThumbnail' => '',
-        'Title' => 'Title',
-        'Description' => 'Description',
-    );
+	private static $has_many = array(
+		'Articles' => 'ArticlePage'
+	);
 
-    public function getGridThumbnail()
-    {
-        if ($this->Photo()->exists()) {
-            return $this->Photo()->SetWidth(100);
-        }
+	private static $summary_fields = array(
+		'GridThumbnail' => '',
+		'Title'         => 'Title',
+		'Description'   => 'Description',
+	);
 
-        return 'No Image';
-    }
+	public function getGridThumbnail()
+	{
+		if ($this->Photo()->exists()) {
+			return $this->Photo()->SetWidth(100);
+		}
 
-    public function getCMSFields()
-    {
-        $fields = FieldList::create(
-            TextField::create('Title'),
-            HtmlEditorField::create('Description'),
-            $upload = UploadField::create('Photo')
-        );
+		return 'No Image';
+	}
 
-        $upload->setAllowedExtensions(array('jpg', 'jpeg', 'png'));
-        $upload->setFolderName('regions-photos');
+	public function getCMSFields()
+	{
+		$fields = FieldList::create(
+			TextField::create('Title'),
+			HtmlEditorField::create('Description'),
+			$upload = UploadField::create('Photo')
+		);
 
-        return $fields;
-    }
+		$upload->setAllowedExtensions(array('jpg', 'jpeg', 'png'));
+		$upload->setFolderName('regions-photos');
 
-    public function LinkingMode()
-    {
-        return Controller::curr()->getRequest()->param('ID') == $this->ID ? 'current' : 'link';
-    }
+		return $fields;
+	}
 
-    public function Link()
-    {
-        return $this->RegionsPage()->Link('show/' . $this->ID);
-    }
+	public function LinkingMode()
+	{
+		return Controller::curr()->getRequest()->param('ID') == $this->ID ? 'current' : 'link';
+	}
+
+	public function ArticlesLink()
+	{
+		$page = ArticleHolder::get()->first();
+
+		if ($page) {
+			return $page->Link('region/' . $this->ID);
+		}
+
+		return null;
+	}
+
+	public function Link()
+	{
+		return $this->RegionsPage()->Link('show/' . $this->ID);
+	}
 }
