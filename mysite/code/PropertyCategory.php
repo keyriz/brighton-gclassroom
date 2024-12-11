@@ -1,12 +1,12 @@
 <?php
 
-class PropertyType extends DataObject
+class PropertyCategory extends DataObject
 {
 	private static $db = array(
 		'Title' => 'Varchar',
 	);
 
-	private static $belongs_many_many = array(
+	private static $has_many = array(
 		'Properties' => 'Property',
 	);
 
@@ -20,7 +20,7 @@ class PropertyType extends DataObject
 	public function Link()
 	{
 		return $this->Property()->Link(
-			'property/type/' . $this->ID
+			'property/category/' . $this->ID
 		);
 	}
 }
