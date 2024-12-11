@@ -14,13 +14,13 @@ SiteConfig:
     - SiteConfigExtension
 ---
 Only:
-  enviroment: dev
+  environment: dev
 ---
 Email:
   send_all_emails_to: 'mo.rizrama@gmail.com'
 ---
 Except:
-  environemnt: dev
+  environment: dev
 ---
 Email:
   bcc_all_emails_to: 'info@example.com'
