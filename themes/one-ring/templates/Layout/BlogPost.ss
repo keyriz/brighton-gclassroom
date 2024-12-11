@@ -1,8 +1,11 @@
 <% include Breadcrumb %>
 
+<!-- open content wrapper -->
 <div class="content">
 	<div class="container">
 		<div class="row">
+
+			<!-- open main content -->
 			<div class="main col-sm-8">
 				<article>
 					<h1>$Title</h1>
@@ -16,6 +19,7 @@
                     <% include EntryMeta %>
 				</article>
 			</div>
+			<!-- closing main content -->
 
 			<div class="sidebar gray col-sm-4">
                 <% include BlogSideBar %>
@@ -23,3 +27,4 @@
 		</div>
 	</div>
 </div>
+<!-- closing content wrapper -->

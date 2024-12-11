@@ -1,117 +1,118 @@
 <% include Breadcrumb %>
 
-<!-- BEGIN CONTENT WRAPPER -->
+<!-- open content wrapper -->
 <div class="content">
-    <div class="container">
-        <div class="row">
+	<div class="container">
+		<div class="row">
 
-            <!-- BEGIN MAIN CONTENT -->
-            <div class="main col-sm-8">
+			<!-- open main content -->
+			<div class="main col-sm-8">
 
-                <h1 class="blog-title">$Title</h1>
+				<h1 class="blog-title">$Title</h1>
 
-                <div class="blog-main-image">
+				<div class="blog-main-image">
                     <% if $Photo %>
                         <% with $Photo.CroppedImage(765,362) %>
-                            <img src="$URL" width="$Width" height="$Height" alt=""/>
+							<img src="$URL" width="$Width" height="$Height" alt=""/>
                         <% end_with %>
                     <% else %>
-                        <img src="http://placehold.co/765x362" alt=""/>
+						<img src="http://placehold.co/765x362" alt=""/>
                     <% end_if %>
-                    <div class="tag"><i class="fa fa-file-text"></i></div>
-                </div>
+					<div class="tag"><i class="fa fa-file-text"></i></div>
+				</div>
 
-                <div class="blog-bottom-info">
-                    <ul>
-                        <li><i class="fa fa-calendar"></i> $Date.Long</li>
-                        <li><i class="fa fa-comments-o"></i> 3 Comments</li>
-                        <li>
-                            <i class="fa fa-tags"></i>
+				<div class="blog-bottom-info">
+					<ul>
+						<li><i class="fa fa-calendar"></i> $Date.Long</li>
+						<li><i class="fa fa-comments-o"></i> 3 Comments</li>
+						<li>
+							<i class="fa fa-tags"></i>
                             <% loop $Categories %>$Title<% if not $Last %>,<% end_if %><% end_loop %>
-                        </li>
-                    </ul>
+						</li>
+					</ul>
 
-                    <div id="post-author"><i class="fa fa-pencil"></i> By $Author</div>
-                </div>
+					<div id="post-author"><i class="fa fa-pencil"></i> By $Author</div>
+				</div>
 
-                <div class="post-content">
-                    <p>
+				<div class="post-content">
+					<p>
                         <% if $Content %>
                             $Content
                         <% else %>
                             $Teaser
                         <% end_if %>
-                    </p>
-                </div>
+					</p>
+				</div>
 
-                <div class="share-wraper col-sm-12 clearfix">
-                    <h5>Share this Post:</h5>
-                    <ul class="social-networks">
-                        <li><a target="_blank"
-                               href="http://www.facebook.com/sharer.php?s=100&amp;p%5Burl%5D=http%3A%2F%2Fwww.wiselythemes.com%2Fhtml%2Fcozy%2Fblog-detail.html%3Ffb%3Dtrue&amp;p%5Bimages%5D%5B0%5D=http%3A%2F%2Fwww.wiselythemes.com%2Fhtml%2Fcozy%2Fimages%2Fnews-img1.jpg&amp;p%5Btitle%5D=Cozy%20Blog%20Post"><i
-                                class="fa fa-facebook"></i></a></li>
-                        <li><a target="_blank"
-                               href="https://twitter.com/intent/tweet?url=http://www.wiselythemes.com/html/cozy/blog-detail.html&amp;text=Cozy%20Blog%20Post"><i
-                                class="fa fa-twitter"></i></a></li>
-                        <li><a target="_blank"
-                               href="https://plus.google.com/share?url=http://www.wiselythemes.com/html/cozy/blog-detail.html"><i
-                                class="fa fa-google"></i></a></li>
-                        <li><a target="_blank"
-                               href="http://pinterest.com/pin/create/button/?url=http://www.wiselythemes.com/html/cozy/blog-detail.html&amp;description=Cozy%20Blog%20Post&amp;media=http%3A%2F%2Fwww.wiselythemes.com%2Fhtml%2Fcozy%2Fimages%2Fnews-img1.jpg"><i
-                                class="fa fa-pinterest"></i></a></li>
-                        <li><a
-                                href="mailto:?subject=Check%20out%20this%20blog%20post%20from%20Cozy%20Real%20Estate!&amp;body=http://www.wiselythemes.com/html/cozy/blog-detail.html"><i
-                                class="fa fa-envelope"></i></a></li>
-                    </ul>
+				<div class="share-wraper col-sm-12 clearfix">
+					<h5>Share this Post:</h5>
+					<ul class="social-networks">
+						<li><a target="_blank"
+						       href="http://www.facebook.com/sharer.php?s=100&amp;p%5Burl%5D=http%3A%2F%2Fwww.wiselythemes.com%2Fhtml%2Fcozy%2Fblog-detail.html%3Ffb%3Dtrue&amp;p%5Bimages%5D%5B0%5D=http%3A%2F%2Fwww.wiselythemes.com%2Fhtml%2Fcozy%2Fimages%2Fnews-img1.jpg&amp;p%5Btitle%5D=Cozy%20Blog%20Post"><i
+								class="fa fa-facebook"></i></a></li>
+						<li><a target="_blank"
+						       href="https://twitter.com/intent/tweet?url=http://www.wiselythemes.com/html/cozy/blog-detail.html&amp;text=Cozy%20Blog%20Post"><i
+								class="fa fa-twitter"></i></a></li>
+						<li><a target="_blank"
+						       href="https://plus.google.com/share?url=http://www.wiselythemes.com/html/cozy/blog-detail.html"><i
+								class="fa fa-google"></i></a></li>
+						<li><a target="_blank"
+						       href="http://pinterest.com/pin/create/button/?url=http://www.wiselythemes.com/html/cozy/blog-detail.html&amp;description=Cozy%20Blog%20Post&amp;media=http%3A%2F%2Fwww.wiselythemes.com%2Fhtml%2Fcozy%2Fimages%2Fnews-img1.jpg"><i
+								class="fa fa-pinterest"></i></a></li>
+						<li><a
+								href="mailto:?subject=Check%20out%20this%20blog%20post%20from%20Cozy%20Real%20Estate!&amp;body=http://www.wiselythemes.com/html/cozy/blog-detail.html"><i
+								class="fa fa-envelope"></i></a></li>
+					</ul>
 
-                    <a class="print-button" href="javascript:window.print();">
-                        <i class="fa fa-print"></i>
-                    </a>
-                </div>
+					<a class="print-button" href="javascript:window.print();">
+						<i class="fa fa-print"></i>
+					</a>
+				</div>
 
                 <% if $Brochure %>
-                    <div class="col-sm-12" style="padding: unset">
+					<div class="col-sm-12" style="padding: unset">
                         <% with $Brochure %>
-                            <a href="$Brochure.URL" class="download-button btn btn-warning btn-block">
-                                <i class="fa fa-download"></i> Download Brochure ($Brochure.Extension) [$Brochure.Size]
-                            </a>
+							<a href="$Brochure.URL" class="download-button btn btn-warning btn-block">
+								<i class="fa fa-download"></i> Download Brochure ($Brochure.Extension) [$Brochure.Size]
+							</a>
                         <% end_with %>
-                    </div>
+					</div>
                 <% end_if %>
 
-                <h1 class="section-title">Comments</h1>
+				<h1 class="section-title">Comments</h1>
 
-                <div class="comments">
+				<div class="comments">
                     <% if $Comments %>
-                        <ul>
+						<ul>
                             <% loop $Comments %>
-                                <li>
-                                    <img src="$ImageDir/themes/one-ring/images/comment-man.jpg" alt=""/>
-                                    <div class="comment">
-                                        <a href="#" class="btn btn-default-color">Reply</a>
-                                        <h3>$Name<small>$Created.Format('j F, Y')</small></h3>
-                                        <p>$Comment</p>
-                                    </div>
-                                </li>
+								<li>
+									<img src="$ImageDir/themes/one-ring/images/comment-man.jpg" alt=""/>
+									<div class="comment">
+										<a href="#" class="btn btn-default-color">Reply</a>
+										<h3>$Name<small>$Created.Format('j F, Y')</small></h3>
+										<p>$Comment</p>
+									</div>
+								</li>
                             <% end_loop %>
-                        </ul>
+						</ul>
                     <% else %>
-                        Comment is Empty.
+						Comment is Empty.
                     <% end_if %>
 
-                    <div class="comments-form" style="padding: unset">
-                        <h3>Leave a Reply</h3>
-                        <p>Your email address will no be published. Required fields are marked*</p>
+					<div class="comments-form" style="padding: unset">
+						<h3>Leave a Reply</h3>
+						<p>Your email address will no be published. Required fields are marked*</p>
 
                         $CommentForm
-                    </div>
-                </div>
+					</div>
+				</div>
 
-            </div>
-            <!-- END MAIN CONTENT -->
+			</div>
+			<!-- closing main content -->
 
             <% include SideBar %>
 
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
+<!-- closing content wrapper -->

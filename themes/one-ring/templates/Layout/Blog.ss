@@ -1,8 +1,11 @@
 <% include Breadcrumb %>
 
+<!-- open content wrapper -->
 <div class="content">
 	<div class="container">
 		<div class="row">
+
+			<!-- open main content -->
 			<div class="main col-sm-8">
 				<article>
 					<h1>
@@ -35,6 +38,7 @@
                     <% end_if %>
 				</article>
 			</div>
+			<!-- closing main content -->
 
 			<div class="sidebar gray col-sm-4">
                 <% include BlogSideBar %>
@@ -42,4 +46,4 @@
 		</div>
 	</div>
 </div>
-<!-- END CONTENT -->
+<!-- closing content wrapper -->
