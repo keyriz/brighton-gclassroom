@@ -18,6 +18,10 @@ class Property extends DataObject
 		'PrimaryPhoto' => 'Image',
 	);
 
+	private static $many_many = array(
+		'Types' => 'PropertyType',
+	);
+
 	private static $summary_fields = array(
 		'Title'                   => 'Title',
 		'Region.Title'            => 'Region',
@@ -47,6 +51,14 @@ class Property extends DataObject
 
 	public function getCMSFields()
 	{
+		$parentFields = parent::getCMSFields();
+		$parentFields->addFieldToTab('Root.Types', GridField::create(
+			'Types',
+			'Property types',
+			$this->Types(),
+			GridFieldConfig_RecordEditor::create()
+		));
+
 		$fields = FieldList::create(TabSet::create('Root'));
 		$fields->addFieldsToTab('Root.Main', array(
 			TextField::create('Title', 'Title'),
@@ -56,11 +68,38 @@ class Property extends DataObject
 			DropdownField::create('RegionID', 'Region')->setSource(Region::get()->map('ID', 'Title'))->setEmptyString('-- Select Region --'),
 			CheckboxField::create('FeaturedOnHomepage', 'Featured On Homepage'),
 		));
+		$fields->addFieldToTab('Root.Types', CheckboxSetField::create('Types', 'Types of Property', $this->Types()->map('ID', 'Title')));
 		$fields->addFieldToTab('Root.Photos', $upload = UploadField::create('PrimaryPhoto', 'Photo'));
 
 		$upload->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png'));
 		$upload->setFolderName('property-photos');
 
 		return $fields;
+	}
+}
+
+class Property_Controller extends Page_Controller
+{
+	private static $allowed_actions = array(
+		'type'
+	);
+
+	public function type(SS_HTTPRequest $r)
+	{
+		$type = PropertyType::get()->byID(
+			$r->param('ID')
+		);
+
+		if (!$type) {
+			return $this->httpError(404, 'That type was not found');
+		}
+
+		$this->articleList = $this->articleList->filter(array(
+			'Types.ID' => $type->ID
+		));
+
+		return array(
+			'SelectedType' => $type
+		);
 	}
 }
