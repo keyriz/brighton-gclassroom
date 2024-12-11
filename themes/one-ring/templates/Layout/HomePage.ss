@@ -1,14 +1,14 @@
 <!-- open #carousel-example-generic -->
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	<div class="carousel-inner" role="listbox">
-		<div class="item active" id="slide1" style="background: url(http://placehold.co/1920x605)">
+		<div class="item active" id="slide1" style="background-image: url(http://placehold.co/1920x605)">
 			<div class="carousel-caption">
 				<div class="caption sfr slider-title">Breathtaking views</div>
 				<div class="caption sfl slider-subtitle">Relaxation in the Bay of Belfalas</div>
 				<a href="#" class="caption sfb btn btn-default btn-lg">Learn More</a>
 			</div>
 		</div>
-		<div class="item" id="slide2" style="background: url(http://placehold.co/1920x605)">
+		<div class="item" id="slide2" style="background-image: url(http://placehold.co/1920x605)">
 			<div class="carousel-caption">
 				<div class="caption sfr slider-title">The simple life</div>
 				<div class="caption sfl slider-subtitle">Lush gardens in Mordor</div>
