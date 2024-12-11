@@ -89,7 +89,7 @@ class PropertySearchPage_Controller extends Page_Controller
 			'Results'       => $paginatedProperties,
 			'ActiveFilters' => $filters
 		);
-
+		
 		if ($request->isAjax()) {
 			return $this->customise($data)->renderWith('PropertySearchResults');
 		}
