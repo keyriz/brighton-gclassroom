@@ -66,7 +66,7 @@ class Property extends DataObject
 
 		$fields->addFieldsToTab('Root.Main', array(
 			TextField::create('Title', 'Title'),
-			TextField::create('URLSegment', 'URL Segment (Slug)')->setAttribute('placeholder', 'Auto generate content. Keep empty or type manually'),
+			TextField::create('URLSegment', 'URL Segment (Slug)')->setDisabled(true)->setAttribute('placeholder', 'Auto generate content'),
 			TextAreaField::create('Summary', 'Summary or Short Description'),
 			CheckboxSetField::create('Types', 'Types of Property', PropertyType::get()->map('ID', 'Title')),
 			CurrencyField::create('PricePerNight', 'Price (per night)'),
