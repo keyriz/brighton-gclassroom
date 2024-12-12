@@ -13,12 +13,12 @@ class Property extends DataObject
 		'AvailableStart'     => 'Date',
 		'AvailableEnd'       => 'Date',
 		'Summary'            => 'Text',
-		'Description'        => 'Text',
 		'Address'            => 'Text',
 		'Province'           => 'Varchar',
 		'City'               => 'Varchar',
 		'District'           => 'Varchar',
 		'FeaturedOnHomepage' => 'Boolean',
+		'Description'        => 'HTMLText',
 	);
 
 	private static $has_one = array(
@@ -87,6 +87,7 @@ class Property extends DataObject
 			NumericField::create('LandArea', 'Land Area (in meters)'),
 			NumericField::create('BuildingArea', 'Building Area (in meters)'),
 			CheckboxSetField::create('Facilities', 'Facilities of Property', PropertyFacility::get()->map('ID', 'Title')),
+			HtmlEditorField::create('Description'),
 		));
 
 		$fields->addFieldToTab('Root.Photos', $upload = UploadField::create('PrimaryPhoto', 'Photo'));
