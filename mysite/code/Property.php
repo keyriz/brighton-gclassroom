@@ -29,7 +29,8 @@ class Property extends DataObject
 	);
 
 	private static $many_many = array(
-		'Types' => 'PropertyType',
+		'Types'      => 'PropertyType',
+		'Facilities' => 'PropertyFacility',
 	);
 
 	private static $summary_fields = array(
@@ -66,20 +67,24 @@ class Property extends DataObject
 		$fields->addFieldsToTab('Root.Main', array(
 			TextField::create('Title', 'Title'),
 			TextField::create('URLSegment', 'URL Segment (Slug)')->setAttribute('placeholder', 'Auto generate content. Keep empty or type manually'),
-			TextField::create('Summary', 'Summary or Short Description'),
+			TextAreaField::create('Summary', 'Summary or Short Description'),
+			CheckboxSetField::create('Types', 'Types of Property', PropertyType::get()->map('ID', 'Title')),
 			CurrencyField::create('PricePerNight', 'Price (per night)'),
-			DropdownField::create('Bedrooms', 'Bedrooms')->setSource(ArrayLib::valuekey(range(1, 10))),
-			DropdownField::create('Bathrooms', 'Bathrooms')->setSource(ArrayLib::valuekey(range(1, 10))),
-			NumericField::create('LandArea', 'Land Area (in meters)'),
-			NumericField::create('BuildingArea', 'Building Area (in meters)'),
 			DropdownField::create('RegionID', 'Region')->setSource(Region::get()->map('ID', 'Title'))->setEmptyString('-- Select Region --'),
 			DropdownField::create('CategoryID', 'Category')->setSource(PropertyCategory::get()->map('ID', 'Title'))->setEmptyString('-- Select Category --'),
 			TextField::create('Address', 'Road Address'),
 			DropdownField::create('Province', 'Province', array())->setEmptyString('-- Select a province --'),
 			DropdownField::create('City', 'City', array())->setEmptyString('-- Select a city --'),
 			DropdownField::create('District', 'District', array())->setEmptyString('-- Select a district --'),
-			CheckboxSetField::create('Types', 'Types of Property', PropertyType::get()->map('ID', 'Title')),
 			CheckboxField::create('FeaturedOnHomepage', 'Featured On Homepage'),
+		));
+
+		$fields->addFieldsToTab('Root.Details', array(
+			DropdownField::create('Bedrooms', 'Bedrooms')->setSource(ArrayLib::valuekey(range(1, 10))),
+			DropdownField::create('Bathrooms', 'Bathrooms')->setSource(ArrayLib::valuekey(range(1, 10))),
+			NumericField::create('LandArea', 'Land Area (in meters)'),
+			NumericField::create('BuildingArea', 'Building Area (in meters)'),
+			CheckboxSetField::create('Facilities', 'Facilities of Property', PropertyFacility::get()->map('ID', 'Title')),
 		));
 
 		$fields->addFieldToTab('Root.Photos', $upload = UploadField::create('PrimaryPhoto', 'Photo'));
