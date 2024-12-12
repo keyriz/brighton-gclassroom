@@ -4,14 +4,21 @@ class Property extends DataObject
 {
 	private static $db = array(
 		'Title'              => 'Varchar',
+		'URLSegment'         => 'Varchar',
 		'PricePerNight'      => 'Currency',
 		'Bedrooms'           => 'Int',
 		'Bathrooms'          => 'Int',
-		'FeaturedOnHomepage' => 'Boolean',
+		'LandArea'           => 'Int',
+		'BuildingArea'       => 'Int',
 		'AvailableStart'     => 'Date',
 		'AvailableEnd'       => 'Date',
+		'Summary'            => 'Text',
 		'Description'        => 'Text',
-		'URLSegment'         => 'Varchar',
+		'Address'            => 'Text',
+		'Province'           => 'Varchar',
+		'City'               => 'Varchar',
+		'District'           => 'Varchar',
+		'FeaturedOnHomepage' => 'Boolean',
 	);
 
 	private static $has_one = array(
@@ -55,21 +62,32 @@ class Property extends DataObject
 	public function getCMSFields()
 	{
 		$fields = FieldList::create(TabSet::create('Root'));
+
 		$fields->addFieldsToTab('Root.Main', array(
 			TextField::create('Title', 'Title'),
 			TextField::create('URLSegment', 'URL Segment (Slug)')->setAttribute('placeholder', 'Auto generate content. Keep empty or type manually'),
+			TextField::create('Summary', 'Summary or Short Description'),
 			CurrencyField::create('PricePerNight', 'Price (per night)'),
 			DropdownField::create('Bedrooms', 'Bedrooms')->setSource(ArrayLib::valuekey(range(1, 10))),
 			DropdownField::create('Bathrooms', 'Bathrooms')->setSource(ArrayLib::valuekey(range(1, 10))),
+			NumericField::create('LandArea', 'Land Area (in meters)'),
+			NumericField::create('BuildingArea', 'Building Area (in meters)'),
 			DropdownField::create('RegionID', 'Region')->setSource(Region::get()->map('ID', 'Title'))->setEmptyString('-- Select Region --'),
 			DropdownField::create('CategoryID', 'Category')->setSource(PropertyCategory::get()->map('ID', 'Title'))->setEmptyString('-- Select Category --'),
+			TextField::create('Address', 'Road Address'),
+			DropdownField::create('Province', 'Province', array())->setEmptyString('-- Select a province --'),
+			DropdownField::create('City', 'City', array())->setEmptyString('-- Select a city --'),
+			DropdownField::create('District', 'District', array())->setEmptyString('-- Select a district --'),
 			CheckboxSetField::create('Types', 'Types of Property', PropertyType::get()->map('ID', 'Title')),
 			CheckboxField::create('FeaturedOnHomepage', 'Featured On Homepage'),
 		));
-		$fields->addFieldToTab('Root.Photos', $upload = UploadField::create('PrimaryPhoto', 'Photo'));
 
+		$fields->addFieldToTab('Root.Photos', $upload = UploadField::create('PrimaryPhoto', 'Photo'));
 		$upload->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png'));
 		$upload->setFolderName('property-photos');
+
+		// Add-on JS
+		Requirements::javascript("mysite/js/scripts.js");
 
 		return $fields;
 	}
