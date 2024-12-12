@@ -31,7 +31,7 @@
             <% loop $Results %>
 				<div class="item col-md-4">
 					<div class="image">
-						<a href="$Link">
+						<a href="$LinkPropertyViewPage">
 							<span class="btn btn-default"><i class="fa fa-file-o"></i> Details</span>
 						</a>
                         <% if $PrimaryPhoto %>
@@ -47,7 +47,7 @@
 					</div>
 					<div class="info">
 						<h3>
-							<a href="$Link">$Title</a>
+							<a href="$LinkPropertyViewPage">$Title</a>
 							<small>$Region.Title</small>
 							<small>Available $AvailableStart.Nice - $AvailableEnd.Nice</small>
 						</h3>

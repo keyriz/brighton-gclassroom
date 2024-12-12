@@ -2,7 +2,24 @@
 
 class PropertySearchPage extends Page
 {
+	public function LinkPropertyViewPage($params = array())
+	{
+		$property = Property::get()->byID($params['ID']);
 
+		if ($property) {
+			$viewPage = PropertyViewPage::get()->filter('PropertyID', $params['ID'])->first();
+
+			if ($viewPage) {
+				return $viewPage->Link();
+			} else {
+				// If no PropertyViewPage exists, link directly to the Property
+				return Controller::join_links($this->Link(), $property->URLSegment);
+			}
+		} else {
+			// Handle the case where Property is not found
+			return false;
+		}
+	}
 }
 
 
@@ -89,7 +106,7 @@ class PropertySearchPage_Controller extends Page_Controller
 			'Results'       => $paginatedProperties,
 			'ActiveFilters' => $filters
 		);
-		
+
 		if ($request->isAjax()) {
 			return $this->customise($data)->renderWith('PropertySearchResults');
 		}
