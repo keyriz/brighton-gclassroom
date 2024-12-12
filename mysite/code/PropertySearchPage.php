@@ -2,29 +2,18 @@
 
 class PropertySearchPage extends Page
 {
-	public function LinkPropertyViewPage($params = array())
-	{
-		$property = Property::get()->byID($params['ID']);
-
-		if ($property) {
-			$viewPage = PropertyViewPage::get()->filter('PropertyID', $params['ID'])->first();
-
-			if ($viewPage) {
-				return $viewPage->Link();
-			} else {
-				// If no PropertyViewPage exists, link directly to the Property
-				return Controller::join_links($this->Link(), $property->URLSegment);
-			}
-		} else {
-			// Handle the case where Property is not found
-			return false;
-		}
-	}
+	private static $has_many = array(
+		'Properties' => 'Property'
+	);
 }
 
 
 class PropertySearchPage_Controller extends Page_Controller
 {
+	private static $allowed_actions = array(
+		'view',
+	);
+
 	public function index(SS_HTTPRequest $request)
 	{
 		$properties = Property::get();
@@ -114,6 +103,25 @@ class PropertySearchPage_Controller extends Page_Controller
 		return $data;
 	}
 
+	public function view(SS_HTTPRequest $request)
+	{
+		$urlSegment = $request->param('ID');
+
+		if (!$urlSegment) {
+			return $this->httpError(404, "Property not found");
+		}
+
+		$property = Property::get()->filter('URLSegment', $urlSegment)->first();
+
+		if (!$property) {
+			return $this->httpError(404, "Property not found");
+		}
+
+		return array(
+			'Property' => $property,
+			'Title'    => $property->Title
+		);
+	}
 
 	public function PropertySearchForm()
 	{

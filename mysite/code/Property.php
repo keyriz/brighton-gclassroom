@@ -15,9 +15,10 @@ class Property extends DataObject
 	);
 
 	private static $has_one = array(
-		'Region'       => 'Region',
-		'PrimaryPhoto' => 'Image',
-		'Category'     => 'PropertyCategory',
+		'Region'             => 'Region',
+		'PrimaryPhoto'       => 'Image',
+		'Category'           => 'PropertyCategory',
+		'PropertySearchPage' => 'PropertySearchPage',
 	);
 
 	private static $many_many = array(
@@ -56,7 +57,7 @@ class Property extends DataObject
 		$fields = FieldList::create(TabSet::create('Root'));
 		$fields->addFieldsToTab('Root.Main', array(
 			TextField::create('Title', 'Title'),
-			TextField::create('URLSegment', 'URL Segment (Slug)'),
+			TextField::create('URLSegment', 'URL Segment (Slug)')->setAttribute('placeholder', 'Auto generate content. Keep empty or type manually'),
 			CurrencyField::create('PricePerNight', 'Price (per night)'),
 			DropdownField::create('Bedrooms', 'Bedrooms')->setSource(ArrayLib::valuekey(range(1, 10))),
 			DropdownField::create('Bathrooms', 'Bathrooms')->setSource(ArrayLib::valuekey(range(1, 10))),
@@ -97,30 +98,9 @@ class Property extends DataObject
 		$filter = URLSegmentFilter::create();
 		return $filter->filter($title);
 	}
-}
 
-class Property_Controller extends Page_Controller
-{
-	private static $allowed_actions = array(
-		'type'
-	);
-
-	public function type(SS_HTTPRequest $r)
+	public function Link()
 	{
-		$type = PropertyType::get()->byID(
-			$r->param('ID')
-		);
-
-		if (!$type) {
-			return $this->httpError(404, 'That type was not found');
-		}
-
-		$this->articleList = $this->articleList->filter(array(
-			'Types.ID' => $type->ID
-		));
-
-		return array(
-			'SelectedType' => $type
-		);
+		return "property/view/$this->URLSegment";
 	}
 }

@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<h1 class="page-title">Blog Detail</h1>
+				<h1 class="page-title">$Title</h1>
 
 				<ul class="breadcrumb">
 					<li><a href="#">Home </a></li>
