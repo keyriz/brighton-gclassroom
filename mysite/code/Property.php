@@ -26,6 +26,7 @@ class Property extends DataObject
 		'PrimaryPhoto'       => 'Image',
 		'Category'           => 'PropertyCategory',
 		'PropertySearchPage' => 'PropertySearchPage',
+		'Agent'              => 'Agent',
 	);
 
 	private static $many_many = array(
@@ -69,6 +70,7 @@ class Property extends DataObject
 			TextField::create('URLSegment', 'URL Segment (Slug)')->setDisabled(true)->setAttribute('placeholder', 'Auto generate content'),
 			TextAreaField::create('Summary', 'Summary or Short Description'),
 			CheckboxSetField::create('Types', 'Types of Property', PropertyType::get()->map('ID', 'Title')),
+			DropdownField::create('AgentID', 'Agent of Property', Agent::get()->map('ID', 'Name')),
 			CurrencyField::create('PricePerNight', 'Price (per night)'),
 			DropdownField::create('RegionID', 'Region')->setSource(Region::get()->map('ID', 'Title'))->setEmptyString('-- Select Region --'),
 			DropdownField::create('CategoryID', 'Category')->setSource(PropertyCategory::get()->map('ID', 'Title'))->setEmptyString('-- Select Category --'),
