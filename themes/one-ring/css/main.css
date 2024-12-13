@@ -15,6 +15,14 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	width: 100%;
 }
 
+.mt-0 {
+	margin-top: unset;
+}
+
+.mb-0 {
+	margin-bottom: unset;
+}
+
 .max-w-72 {
 	max-width: 18rem;
 }
@@ -312,6 +320,13 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 /* end nav */
 
+/* begin grid */
+.grid { /* override exists class */
+	display: grid;
+}
+
+/* end grid */
+
 /* begin card */
 .card {
 	width: 100%;
@@ -326,6 +341,19 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	background-repeat: no-repeat;
 	background-position: left center;
 	background-size: cover;
+}
+
+.carousel .carousel-caption { /* override exist class */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+@media (max-width: 639px) {
+	.carousel .slider-title {
+		font-size: 3rem;
+		line-height: 3rem;
+	}
 }
 
 /* end carousel */
@@ -348,12 +376,24 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 /* end badges */
 
 /* begin property view page */
+.property-info {
+	order: 1;
+}
+
+.property-price {
+	order: 2;
+}
+
+.property-agent {
+	order: 3;
+}
+
 .property-title { /* override the exists class */
 	margin-top: unset;
 	margin-bottom: 1rem;
 }
 
-.property-price {
+.property-price h2 {
 	font-family: monospace;
 	font-size: 2rem;
 	font-weight: 500;
@@ -380,6 +420,20 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .property-description li {
 	margin-bottom: 4px;
+}
+
+@media (max-width: 639px) {
+	.property-info {
+		order: 2;
+	}
+
+	.property-price {
+		order: 1;
+	}
+
+	.property-price .card, .property-agent .card {
+		max-width: 100%;
+	}
 }
 
 /* end property view page */

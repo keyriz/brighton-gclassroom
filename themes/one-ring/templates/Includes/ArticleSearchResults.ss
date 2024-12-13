@@ -1,14 +1,14 @@
 <!-- open #blog-listing -->
 <div id="blog-listing" class="list-style clearfix">
-	<div class="row">
-        <% if $SelectedRegion %>
-			<h3>Region: $SelectedRegion.Title</h3>
-        <% else_if $SelectedCategory %>
-			<h3>Category: $SelectedCategory.Title</h3>
-        <% else_if $StartDate %>
-			<h3>Date: $StartDate.Full to $EndDate.Full</h3>
-        <% end_if %>
+    <% if $SelectedRegion %>
+		<h3 class="mb-4">Region: $SelectedRegion.Title</h3>
+    <% else_if $SelectedCategory %>
+		<h3 class="mb-4">Category: $SelectedCategory.Title</h3>
+    <% else_if $StartDate %>
+		<h3 class="mb-4">Date: $StartDate.Full to $EndDate.Full</h3>
+    <% end_if %>
 
+	<div class="row">
         <% loop $PaginatedArticles %>
 			<div class="item col-md-6">
 				<div class="image">

@@ -43,6 +43,7 @@ class Page_Controller extends ContentController
 		Requirements::javascript("{$this->ThemeDir()}/js/common/bootstrap-checkbox.js");
 		Requirements::javascript("{$this->ThemeDir()}/js/common/nice-scroll.js");
 		Requirements::javascript("{$this->ThemeDir()}/js/common/jquery-browser.js");
+		Requirements::javascript("//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js");
 		Requirements::javascript("{$this->ThemeDir()}/js/scripts.js");
 
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements

@@ -34,7 +34,7 @@
 
             if (w <= 975 && !$tis.mobMenuFlag) {
 
-                $('body').prepend('<nav class="nav-mobile"><i class="fa fa-times"></i><h2><i class="fa fa-bars"></i>' + $tis.mobileMenuTitle + '</h2><ul></ul></nav>');
+                $('body').prepend('<nav class="nav-mobile"><i class="fa fa-times"></i><h2><i class="fa fa-bars"></i>Menus</h2><ul></ul></nav>');
 
                 $('.nav-mobile > ul').html($('.nav').html());
 

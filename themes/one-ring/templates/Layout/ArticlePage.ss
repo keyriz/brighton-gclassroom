@@ -8,9 +8,11 @@
 			<!-- open main content -->
 			<div class="main col-sm-8">
 
-				<h1 class="blog-title">$Title</h1>
+				<h1 class="blog-title mb-4">$Title</h1>
 
-				<div class="blog-main-image">
+				<div id="post-author" class="mb-4">By $Author</div>
+
+				<div class="blog-main-image mb-4">
                     <% if $Photo %>
                         <% with $Photo.CroppedImage(765,362) %>
 							<img src="$URL" width="$Width" height="$Height" alt=""/>
@@ -21,17 +23,10 @@
 					<div class="tag"><i class="fa fa-file-text"></i></div>
 				</div>
 
-				<div class="blog-bottom-info">
-					<ul>
-						<li><i class="fa fa-calendar"></i> $Date.Long</li>
-						<li><i class="fa fa-comments-o"></i> 3 Comments</li>
-						<li>
-							<i class="fa fa-tags"></i>
-                            <% loop $Categories %>$Title<% if not $Last %>,<% end_if %><% end_loop %>
-						</li>
-					</ul>
-
-					<div id="post-author"><i class="fa fa-pencil"></i> By $Author</div>
+				<div class="flex gap-2 mb-4">
+					<span><i class="fa fa-calendar"></i> $Date.Long</span> |
+					<span><i class="fa fa-comments-o"></i> 2</span> |
+					<span><i class="fa fa-tags"></i> <% loop $Categories %>$Title<% if not $Last %>,<% end_if %><% end_loop %></span>
 				</div>
 
 				<div class="post-content">
@@ -45,7 +40,7 @@
 				</div>
 
 				<div class="share-wraper col-sm-12 clearfix">
-					<h5>Share this Post:</h5>
+					<h5>Share:</h5>
 					<ul class="social-networks">
 						<li><a target="_blank"
 						       href="http://www.facebook.com/sharer.php?s=100&amp;p%5Burl%5D=http%3A%2F%2Fwww.wiselythemes.com%2Fhtml%2Fcozy%2Fblog-detail.html%3Ffb%3Dtrue&amp;p%5Bimages%5D%5B0%5D=http%3A%2F%2Fwww.wiselythemes.com%2Fhtml%2Fcozy%2Fimages%2Fnews-img1.jpg&amp;p%5Btitle%5D=Cozy%20Blog%20Post"><i
@@ -71,11 +66,9 @@
 
                 <% if $Brochure %>
 					<div class="col-sm-12" style="padding: unset">
-                        <% with $Brochure %>
-							<a href="$Brochure.URL" class="download-button btn btn-warning btn-block">
-								<i class="fa fa-download"></i> Download Brochure ($Brochure.Extension) [$Brochure.Size]
-							</a>
-                        <% end_with %>
+						<a href="$Brochure.URL" class="download-button btn btn-warning btn-block" target="_blank">
+							<i class="fa fa-download"></i> Download Brochure ($BrochureExtension) [$FormattedBrochureSize]
+						</a>
 					</div>
                 <% end_if %>
 
@@ -88,7 +81,7 @@
 								<li>
 									<img src="$ImageDir/themes/one-ring/images/comment-man.jpg" alt=""/>
 									<div class="comment">
-										<a href="#" class="btn btn-default-color">Reply</a>
+										<a href="#" class="btn btn-default-color mt-0">Reply</a>
 										<h3>$Name<small>$Created.Format('j F, Y')</small></h3>
 										<p>$Comment</p>
 									</div>
@@ -96,7 +89,7 @@
                             <% end_loop %>
 						</ul>
                     <% else %>
-						Comment is Empty.
+						<p class="mb-8">Comment is Empty.</p>
                     <% end_if %>
 
 					<div class="comments-form" style="padding: unset">

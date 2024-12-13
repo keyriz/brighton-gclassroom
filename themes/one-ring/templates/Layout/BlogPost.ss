@@ -8,13 +8,13 @@
 			<!-- open main content -->
 			<div class="main col-sm-8">
 				<article>
-					<h1>$Title</h1>
+					<h1 class="blog-title mb-4">$Title</h1>
 
                     <% if $FeaturedImage %>
 						<p class="post-image">$FeaturedImage.setWidth(795)</p>
                     <% end_if %>
 
-					<div class="content">$Content</div>
+					<div class="content mb-8">$Content</div>
 
                     <% include EntryMeta %>
 				</article>

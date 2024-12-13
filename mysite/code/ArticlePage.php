@@ -51,6 +51,33 @@ class ArticlePage extends Page
 			return 'Uncategorized';
 		}
 	}
+
+	public function getBrochureExtension()
+	{
+		if ($this->Brochure()->exists()) {
+			return $this->Brochure()->getExtension(); // SilverStripe 3 Brochure method
+		}
+		return null;
+	}
+
+	public function getFormattedBrochureSize()
+	{
+		if ($this->Brochure()->exists()) {
+			$sizeInBytes = $this->Brochure()->getAbsoluteSize();
+			return $this->formatBytes($sizeInBytes);
+		}
+		return null;
+	}
+
+	private function formatBytes($bytes, $precision = 2)
+	{
+		$units = array('B', 'KB', 'MB', 'GB', 'TB');
+		$pow   = floor(($bytes ? log($bytes) : 0) / log(1024));
+		$pow   = min($pow, count($units) - 1);
+
+		$bytes /= (1 << (10 * $pow));
+		return round($bytes, $precision) . ' ' . $units[$pow];
+	}
 }
 
 class ArticlePage_Controller extends Page_Controller
