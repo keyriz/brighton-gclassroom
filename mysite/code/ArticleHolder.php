@@ -116,9 +116,7 @@ class ArticleHolder_Controller extends Page_Controller
 
 	public function category(SS_HTTPRequest $r)
 	{
-		$category = ArticleCategory::get()->byID(
-			$r->param('ID')
-		);
+		$category = ArticleCategory::get()->filter('URLSegment', $r->param('ID'))->first();
 
 		if (!$category) {
 			return $this->httpError(404, 'That category was not found');
@@ -135,9 +133,7 @@ class ArticleHolder_Controller extends Page_Controller
 
 	public function region(SS_HTTPRequest $r)
 	{
-		$region = Region::get()->byID(
-			$r->param('ID')
-		);
+		$region = Region::get()->filter('URLSegment', $r->param('ID'))->first();
 
 		if (!$region) {
 			return $this->httpError(404, 'That region was not found');
