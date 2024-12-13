@@ -5,8 +5,16 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<ul id="top-buttons">
-						<li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
-						<li><a href="#"><i class="fa fa-pencil-square-o"></i> Register</a></li>
+						<li>
+							<a href="/admin">
+                                <% if $UserEmail %>
+									Open CMS
+                                <% else %>
+									<i class="fa fa-sign-in"></i> Login
+                                <% end_if %>
+							</a>
+						</li>
+                        <%--                        <li><a href="#"><i class="fa fa-pencil-square-o"></i> Register</a></li>--%>
 						<li class="divider"></li>
 						<li>
 							<div class="language-switcher">
