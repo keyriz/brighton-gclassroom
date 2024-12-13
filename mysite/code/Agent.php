@@ -39,7 +39,7 @@ class Agent extends DataObject
 		$fields = FieldList::create(
 			TextField::create('Name'),
 			TextField::create('URLSegment', 'URL Segment (Slug)')->setDisabled(true)->setAttribute('placeholder', 'Auto generate content'),
-			TextField::create('Phone')->setAttribute('placeholder', '08987654321'),
+			TextField::create('Phone', 'WhatsApp Number')->setAttribute('placeholder', '628987654321'),
 			$upload = UploadField::create('Photo'),
 			HtmlEditorField::create('Description')
 		);
