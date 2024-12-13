@@ -125,6 +125,20 @@ class Property extends DataObject
 		return $filter->filter($title);
 	}
 
+	public function getFormattedPrice()
+	{
+		return '$' . number_format($this->PricePerNight, 2);
+	}
+
+	public function getAddressCensored()
+	{
+		return preg_replace_callback('/\d+/', function ($matches) {
+			// Replace numbers with up to 3 '*'
+			$length = strlen($matches[0]);
+			return str_repeat('*', min($length, 3));
+		}, $this->Address);
+	}
+
 	public function Link()
 	{
 		return "property/view/$this->URLSegment";

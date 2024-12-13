@@ -54,7 +54,7 @@ class Agent extends DataObject
 	{
 		parent::onBeforeWrite();
 
-		if (!$this->URLSegment || $this->URLSegment == 'new-property') {
+		if (!$this->URLSegment || $this->URLSegment == 'new-agent') {
 			$this->URLSegment = $this->generateURLSegment($this->Name);
 		} else {
 			$this->URLSegment = $this->generateURLSegment($this->URLSegment);
@@ -73,6 +73,11 @@ class Agent extends DataObject
 	{
 		$filter = URLSegmentFilter::create();
 		return $filter->filter($title);
+	}
+
+	public function getPhoneWhatsapp()
+	{
+		return preg_replace('/^08/', '628', $this->Phone);
 	}
 
 	public function Link()

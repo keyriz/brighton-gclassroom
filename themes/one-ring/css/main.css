@@ -15,8 +15,287 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	width: 100%;
 }
 
+.max-w-72 {
+	max-width: 18rem;
+}
+
+.m-4 {
+	margin: 1rem; /* 16px */
+}
+
+.mx-4 {
+	margin-left: 1rem; /* 16px */
+	margin-right: 1rem; /* 16px */
+}
+
+.my-4 {
+	margin-top: 1rem; /* 16px */
+	margin-bottom: 1rem; /* 16px */
+}
+
+.ms-4 {
+	margin-inline-start: 1rem; /* 16px */
+}
+
+.me-4 {
+	margin-inline-end: 1rem; /* 16px */
+}
+
+.mt-4 {
+	margin-top: 1rem; /* 16px */
+}
+
+.mr-4 {
+	margin-right: 1rem; /* 16px */
+}
+
+.mb-4 {
+	margin-bottom: 1rem; /* 16px */
+}
+
+.ml-4 {
+	margin-left: 1rem; /* 16px */
+}
+
+.m-5 {
+	margin: 1.25rem; /* 20px */
+}
+
+.mx-5 {
+	margin-left: 1.25rem; /* 20px */
+	margin-right: 1.25rem; /* 20px */
+}
+
+.my-5 {
+	margin-top: 1.25rem; /* 20px */
+	margin-bottom: 1.25rem; /* 20px */
+}
+
+.ms-5 {
+	margin-inline-start: 1.25rem; /* 20px */
+}
+
+.me-5 {
+	margin-inline-end: 1.25rem; /* 20px */
+}
+
+.mt-5 {
+	margin-top: 1.25rem; /* 20px */
+}
+
+.mr-5 {
+	margin-right: 1.25rem; /* 20px */
+}
+
+.mb-5 {
+	margin-bottom: 1.25rem; /* 20px */
+}
+
+.ml-5 {
+	margin-left: 1.25rem; /* 20px */
+}
+
+.m-6 {
+	margin: 1.5rem; /* 24px */
+}
+
+.mx-6 {
+	margin-left: 1.5rem; /* 24px */
+	margin-right: 1.5rem; /* 24px */
+}
+
+.my-6 {
+	margin-top: 1.5rem; /* 24px */
+	margin-bottom: 1.5rem; /* 24px */
+}
+
+.ms-6 {
+	margin-inline-start: 1.5rem; /* 24px */
+}
+
+.me-6 {
+	margin-inline-end: 1.5rem; /* 24px */
+}
+
+.mt-6 {
+	margin-top: 1.5rem; /* 24px */
+}
+
+.mr-6 {
+	margin-right: 1.5rem; /* 24px */
+}
+
+.mb-6 {
+	margin-bottom: 1.5rem; /* 24px */
+}
+
+.ml-6 {
+	margin-left: 1.5rem; /* 24px */
+}
+
+.m-7 {
+	margin: 1.75rem; /* 28px */
+}
+
+.mx-7 {
+	margin-left: 1.75rem; /* 28px */
+	margin-right: 1.75rem; /* 28px */
+}
+
+.my-7 {
+	margin-top: 1.75rem; /* 28px */
+	margin-bottom: 1.75rem; /* 28px */
+}
+
+.ms-7 {
+	margin-inline-start: 1.75rem; /* 28px */
+}
+
+.me-7 {
+	margin-inline-end: 1.75rem; /* 28px */
+}
+
+.mt-7 {
+	margin-top: 1.75rem; /* 28px */
+}
+
+.mr-7 {
+	margin-right: 1.75rem; /* 28px */
+}
+
+.mb-7 {
+	margin-bottom: 1.75rem; /* 28px */
+}
+
+.ml-7 {
+	margin-left: 1.75rem; /* 28px */
+}
+
+.m-8 {
+	margin: 2rem; /* 32px */
+}
+
+.mx-8 {
+	margin-left: 2rem; /* 32px */
+	margin-right: 2rem; /* 32px */
+}
+
+.my-8 {
+	margin-top: 2rem; /* 32px */
+	margin-bottom: 2rem; /* 32px */
+}
+
+.ms-8 {
+	margin-inline-start: 2rem; /* 32px */
+}
+
+.me-8 {
+	margin-inline-end: 2rem; /* 32px */
+}
+
+.mt-8 {
+	margin-top: 2rem; /* 32px */
+}
+
+.mr-8 {
+	margin-right: 2rem; /* 32px */
+}
+
+.mb-8 {
+	margin-bottom: 2rem; /* 32px */
+}
+
+.flex {
+	display: flex;
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
+.gap-2 {
+	gap: 0.5rem; /* 8px */
+}
+
+.items-center {
+	align-items: center;
+}
+
+.items-end {
+	align-items: flex-end;
+}
+
 .position-relative {
 	position: relative;
+}
+
+.float-right {
+	float: right;
+}
+
+.bg-primary { /* override exists class */
+	background-color: #f2c236;
+}
+
+.font-bold {
+	font-weight: 700;
+}
+
+.text-xs {
+	font-size: 0.75rem; /* 12px */
+	line-height: 1rem; /* 16px */
+}
+
+.text-sm {
+	font-size: 0.875rem; /* 14px */
+	line-height: 1.25rem; /* 20px */
+}
+
+.text-base {
+	font-size: 1rem; /* 16px */
+	line-height: 1.5rem; /* 24px */
+}
+
+.text-lg {
+	font-size: 1.125rem; /* 18px */
+	line-height: 1.75rem; /* 28px */
+}
+
+.text-xl {
+	font-size: 1.25rem; /* 20px */
+	line-height: 1.75rem; /* 28px */
+}
+
+.shadow-sm {
+	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.shadow {
+	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.shadow-md {
+	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.shadow-lg {
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.shadow-xl {
+	box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.shadow-2xl {
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+.shadow-inner {
+	box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+}
+
+.shadow-none {
+	box-shadow: 0 0 #0000;
 }
 
 /* end utilities */
@@ -32,6 +311,15 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 /* end nav */
+
+/* begin card */
+.card {
+	width: 100%;
+	padding: 1rem 1.5rem;
+	border-radius: 1rem;
+}
+
+/* end card */
 
 /* begin carousel */
 .carousel .item {
@@ -59,61 +347,16 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 /* end badges */
 
-/* begin sticky item */
-.sticky {
-	position: sticky;
-	top: 20px; /* Distance from the top of parent */
-	width: 200px;
-	background: #007bff;
-	color: white;
-	padding: 20px;
-	border-radius: 5px;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-	transition: transform 0.3s ease; /* Smooth transition for movement */
-}
-
-
-/* Parent container for sticky div */
-.parent-container {
-	position: relative;
-	background-color: #f5f5f5;
-	padding: 20px;
-	margin-bottom: 50px; /* Space for next section */
-	border: 1px solid #ccc;
-}
-
-/* Sticky div */
-.sticky-div {
-	position: sticky;
-	top: 20px; /* Distance from the top of parent */
-	width: 200px;
-	background: #007bff;
-	color: white;
-	padding: 20px;
-	border-radius: 5px;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-	transition: transform 0.3s ease; /* Smooth transition for movement */
-}
-
-/* end sticky item */
-
 /* begin property view page */
-.property-details {
-	margin: 2rem 0;
-}
-
-.property-details h4, .property-description h4 {
-	margin-bottom: 1rem;
-}
-
 .property-title { /* override the exists class */
 	margin-top: unset;
 	margin-bottom: 1rem;
 }
 
-.property-image {
-	position: relative;
-	margin-bottom: 1rem;
+.property-price {
+	font-family: monospace;
+	font-size: 2rem;
+	font-weight: 500;
 }
 
 .property-category {

@@ -6,7 +6,7 @@
 			<!-- open main content -->
 			<div class="main col-sm-12">
 
-				<div class="property-image">
+				<div class="property-image position-relative mb-8">
 					<span class="property-category badge badge-lg badge-primary">$Property.Category.Title</span>
                     <% if $Property.PrimaryPhoto %>
                         <% with $Property.PrimaryPhoto %>
@@ -21,14 +21,9 @@
 					<div class="col-sm-8">
 						<div class="property-info">
 							<h1 class="property-title">$Title</h1>
-                            <%--                            <div class="property-tags">--%>
-                            <%--                                <% loop $Property.Types %>--%>
-                            <%--                                    <span class="badge badge-primary badge-md">$Title</span>--%>
-                            <%--                                <% end_loop %>--%>
-                            <%--                            </div>--%>
 							<p class="property-summary">$Property.Summary</p>
-							<div class="property-details">
-								<h4>Details Property</h4>
+							<div class="mb-8">
+								<h4 class="mb-4">Details Property</h4>
 								<div class="row">
 									<div class="col-sm-6"><p>Bedrooms</p></div>
 									<div class="col-sm-6"><strong>$Property.Bedrooms</strong></div>
@@ -40,18 +35,31 @@
 									<div class="col-sm-6"><strong>$Property.BuildingArea</strong></div>
 								</div>
 							</div>
-							<div class="property-description">
-								<h4>Description Property</h4>
+							<div class="property-description mb-8">
+								<h4 class="mb-4">Description</h4>
                                 $Property.Description
+							</div>
+							<div class="mb-8">
+								<h4 class="mb-4">Address</h4>
+                                $Property.getAddressCensored
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4 ">
-						Place for Price
-                        <%--                        <div class="position-relative" style="width: 100%; height: 800px">--%>
-                        <%--                            <div class="sticky w-full">--%>
-                        <%--                            </div>--%>
-                        <%--                        </div>--%>
+					<div class="col-sm-4">
+						<div class="card mb-8 float-right flex flex-col items-end max-w-72 shadow-lg bg-primary">
+							<div class="font-bold text-lg flex gap-2"><% loop $Property.Types %><p>For $Title</p><% if not $Last %> / <% end_if %><% end_loop %></div>
+							<h2 class="property-price">$Property.getFormattedPrice</h2>
+							<p class="text-sm">/ Per Night</p>
+						</div>
+						<div class="card float-right flex flex-col items-center max-w-72 shadow-lg bg-warning">
+							<img class="img-responsive img-circle" width="100" src="$ThemeDir/images/comment-man.jpg">
+							<p class="text-lg">$Property.Agent.Title</p>
+							<a href="https://wa.me/$Property.Agent.getPhoneWhatsapp" target="_blank" class="text-lg">$Property.Agent.Phone</a>
+						</div>
+                        <%--                                                <div class="position-relative" style="width: 100%; height: 800px">--%>
+                        <%--                                                    <div class="sticky w-full">--%>
+                        <%--                                                    </div>--%>
+                        <%--                                                </div>--%>
 					</div>
 				</div>
 			</div>
