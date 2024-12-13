@@ -7,7 +7,7 @@
 			<div class="main col-sm-12">
 
 				<div class="property-image position-relative mb-8">
-					<span class="property-category badge badge-lg badge-primary">$Property.Category.Title</span>
+					<span class="property-category badge badge-lg badge-primary text-base">$Property.Category.Title</span>
                     <% if $Property.PrimaryPhoto %>
                         <% with $Property.PrimaryPhoto %>
 							<img src="$URL" alt="property-image"/>
@@ -21,7 +21,7 @@
 					<div class="col-sm-8">
 						<div class="property-info">
 							<h1 class="property-title">$Title</h1>
-							<p class="property-summary">$Property.Summary</p>
+							<p class="property-summary mb-8">$Property.Summary</p>
 							<div class="mb-8">
 								<h4 class="mb-4">Details Property</h4>
 								<div class="row">
@@ -33,6 +33,18 @@
 									<div class="col-sm-6"><strong>$Property.LandArea</strong></div>
 									<div class="col-sm-6"><p>BuildingArea</p></div>
 									<div class="col-sm-6"><strong>$Property.BuildingArea</strong></div>
+								</div>
+							</div>
+							<div class="property-description mb-8">
+								<h4 class="mb-4">Facilities</h4>
+								<div class="flex gap-2">
+                                    <% if $Property.Facilities %>
+                                        <% loop $Property.Facilities %>
+											<div class="badge badge-primary text-sm">$Title</div>
+                                        <% end_loop %>
+                                    <% else %>
+										<p>No Facilities</p>
+                                    <% end_if %>
 								</div>
 							</div>
 							<div class="property-description mb-8">

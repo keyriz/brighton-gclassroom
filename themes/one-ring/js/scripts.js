@@ -132,32 +132,5 @@
                 }
             }
         }
-
-        // /** begin scrolling div **/
-        // const stickyDiv = document.getElementById("stickyDiv");
-        // const parentContainer = document.querySelector(".parent-container");
-        // const stopTop = document.getElementById("stopTop").offsetTop;
-        // const stopBottom = document.getElementById("stopBottom").offsetTop;
-        //
-        // window.addEventListener("scroll", () => {
-        //     const parentTop = parentContainer.offsetTop;
-        //     const parentBottom = parentTop + parentContainer.offsetHeight;
-        //     const scrollY = window.scrollY;
-        //
-        //     // Check if scrollY is within the range of the parent container
-        //     if (scrollY >= parentTop && scrollY + window.innerHeight <= parentBottom) {
-        //         stickyDiv.style.position = "sticky";  // Sticky behavior
-        //     } else {
-        //         stickyDiv.style.position = "absolute"; // Let it stop when out of parent bounds
-        //     }
-        //
-        //     // Check if sticky div should stop at the bottom
-        //     if (scrollY + window.innerHeight >= stopBottom) {
-        //         stickyDiv.style.transform = `translateY(${stopBottom - scrollY - window.innerHeight}px)`;
-        //     } else {
-        //         stickyDiv.style.transform = "translateY(0)";
-        //     }
-        // });
-        // /** end scrolling div **/
     })
 })(jQuery);
