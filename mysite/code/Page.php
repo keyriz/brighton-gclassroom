@@ -39,6 +39,9 @@ class Page_Controller extends ContentController
 	public function init()
 	{
 		parent::init();
+
+		$page_chosen = array('ArticleHolderPage', 'PropertySearchPage', 'HomePage'); // Page using chosen plugin
+
 		Requirements::css("//fonts.googleapis.com/css?family=Raleway:300,500,900%7COpen+Sans:400,700,400italic");
 		Requirements::css("{$this->ThemeDir()}/css/bootstrap.min.css");
 		Requirements::css("{$this->ThemeDir()}/css/style.css");
@@ -47,13 +50,22 @@ class Page_Controller extends ContentController
 		Requirements::javascript("{$this->ThemeDir()}/js/common/modernizr.js");
 		Requirements::javascript("{$this->ThemeDir()}/js/common/jquery-1.11.1.min.js");
 		Requirements::javascript("{$this->ThemeDir()}/js/common/bootstrap.min.js");
-		Requirements::javascript("{$this->ThemeDir()}/js/common/bootstrap-datepicker.js");
-		Requirements::javascript("{$this->ThemeDir()}/js/common/chosen.min.js");
-		Requirements::javascript("{$this->ThemeDir()}/js/common/bootstrap-checkbox.js");
 		Requirements::javascript("{$this->ThemeDir()}/js/common/nice-scroll.js");
 		Requirements::javascript("{$this->ThemeDir()}/js/common/jquery-browser.js");
 		Requirements::javascript("//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js");
 		Requirements::javascript("{$this->ThemeDir()}/js/scripts.js");
+
+		// Begin assets for CMS
+		if (Controller::curr() instanceof LeftAndMain) {
+			Requirements::javascript("{$this->ThemeDir()}/js/common/bootstrap-datepicker.js");
+			Requirements::javascript("{$this->ThemeDir()}/js/common/bootstrap-checkbox.js");
+			Requirements::javascript("{$this->ThemeDir()}/js/common/chosen.min.js");
+		}
+		// End assets for CMS
+
+		if (in_array($this->dataRecord->ClassName, $page_chosen) || in_array($this->dataRecord->URLSegment, $specificURLSegments)) {
+			Requirements::javascript("{$this->ThemeDir()}/js/common/chosen.min.js");
+		}
 
 		// See: http://doc.silverstripe.org/framework/en/reference/requirements
 	}

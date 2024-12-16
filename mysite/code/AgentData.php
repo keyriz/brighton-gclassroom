@@ -46,6 +46,7 @@ class AgentData extends DataObject
 
 		$upload->setAllowedExtensions(array('jpg', 'jpeg', 'png'));
 		$upload->setFolderName('agents-photos');
+//		$upload->setAllowedMaxFileSize(1024 * 1024 * 2); // Tidak ada pada silverstripe versi 3.x
 
 		return $fields;
 	}

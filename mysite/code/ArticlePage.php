@@ -83,10 +83,10 @@ class ArticlePage extends Page
 class ArticlePage_Controller extends Page_Controller
 {
 	private static $allowed_actions = array(
-		'commentform'
+		'CommentForm'
 	);
 
-	public function commentform()
+	public function CommentForm()
 	{
 		$form = Form::create(
 			$this,
