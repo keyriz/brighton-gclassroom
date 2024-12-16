@@ -21,5 +21,5 @@ SS_Log::add_writer(new SS_LogFileWriter(BASE_PATH . '/logs/silverstripe-errors.l
 SS_Log::add_writer(new SS_LogFileWriter(BASE_PATH . '/logs/silverstripe-errors.log'), SS_Log::ERR);
 
 if (Director::isLive()) {
-	SS_Log::add_writer(new SS_LogEmailWriter('mo.rizrama@gmail.com'), SS_Log::ERR);
+	SS_Log::add_writer(new SS_LogEmailWriter('crosstechno.report@gmail.com'), SS_Log::ERR);
 }

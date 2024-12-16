@@ -26,7 +26,7 @@ Only:
   environment: dev
 ---
 Email:
-  send_all_emails_to: 'mo.rizrama@gmail.com'
+  send_all_emails_to: 'crosstechno.report@gmail.com'
 ---
 Except:
   environment: dev
