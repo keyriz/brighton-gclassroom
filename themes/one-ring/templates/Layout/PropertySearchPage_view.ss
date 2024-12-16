@@ -6,6 +6,8 @@
 			<!-- open main content -->
 			<div class="main col-sm-12">
 
+                $Property.ProvinceOptions
+
 				<div class="property-image position-relative mb-8">
 					<span class="property-category badge badge-lg badge-primary text-base">$Property.Category.Title</span>
                     <% if $Property.PrimaryPhoto %>

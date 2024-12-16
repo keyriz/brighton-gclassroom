@@ -41,13 +41,13 @@
 					<a href="$AbsoluteBaseURL" class="nav-logo"><img src="$ThemeDir/images/logo.png" alt="One Ring Rentals"/></a>
 
 					<!-- open search -->
-					<div id="sb-search" class="sb-search">
-						<form>
-							<input class="sb-search-input" placeholder="Search..." type="text" value="" name="search" id="search">
-							<input class="sb-search-submit" type="submit" value="">
-							<i class="fa fa-search sb-icon-search"></i>
-						</form>
-					</div>
+                    <%--                    <div id="sb-search" class="sb-search">--%>
+                    <%--                        <form>--%>
+                    <%--                            <input class="sb-search-input" placeholder="Search..." type="text" value="" name="search" id="search">--%>
+                    <%--                            <input class="sb-search-submit" type="submit" value="">--%>
+                    <%--                            <i class="fa fa-search sb-icon-search"></i>--%>
+                    <%--                        </form>--%>
+                    <%--                    </div>--%>
 					<!-- closing search -->
 
 					<!-- open main menu -->
