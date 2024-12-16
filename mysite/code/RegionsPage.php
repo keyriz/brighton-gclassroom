@@ -3,10 +3,10 @@
 class RegionsPage extends Page
 {
 	private static $has_many = array(
-		'Regions' => 'Region'
+		'Regions' => 'RegionData'
 	);
 
-	public function getCMSFields()
+	public function GetCMSFields()
 	{
 		$fields = parent::getCMSFields();
 		$fields->addFieldToTab('Root.Regions', GridField::create(
@@ -29,7 +29,7 @@ class RegionsPage_Controller extends Page_Controller
 	public function show(SS_HTTPRequest $request)
 	{
 		$urlSegment = $request->param('ID');
-		$region     = Region::get()->filter('URLSegment', $urlSegment)->first();
+		$region     = RegionData::get()->filter('URLSegment', $urlSegment)->first();
 
 		if (!$region) {
 			return $this->httpError(404, "Region not found");

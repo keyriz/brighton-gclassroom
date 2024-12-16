@@ -22,7 +22,7 @@ class PropertyData extends DataObject
 	);
 
 	private static $has_one = array(
-		'Region'             => 'Region',
+		'RegionData'         => 'RegionData',
 		'PrimaryPhoto'       => 'Image',
 		'Category'           => 'PropertyCategoryData',
 		'PropertySearchPage' => 'PropertySearchPage',
@@ -36,7 +36,7 @@ class PropertyData extends DataObject
 
 	private static $summary_fields = array(
 		'Title'                   => 'Title',
-		'Region.Title'            => 'Region',
+		'RegionData.Title'        => 'RegionData',
 		'PricePerNight.Nice'      => 'Price',
 		'FeaturedOnHomepage.Nice' => 'Featured?',
 	);
@@ -52,7 +52,7 @@ class PropertyData extends DataObject
 			'RegionID'           => array(
 				'filter' => 'ExactMatchFilter',
 				'title'  => 'Region',
-				'field'  => DropdownField::create('RegionID')->setSource(Region::get()->map('ID', 'Title'))->setEmptyString('-- Any Region --'),
+				'field'  => DropdownField::create('RegionID')->setSource(RegionData::get()->map('ID', 'Title'))->setEmptyString('-- Any Region --'),
 			),
 			'FeaturedOnHomepage' => array(
 				'filter' => 'ExactMatchFilter',
@@ -72,7 +72,7 @@ class PropertyData extends DataObject
 			CheckboxSetField::create('Types', 'Types of Property', PropertyTypeData::get()->map('ID', 'Title')),
 			DropdownField::create('AgentID', 'Agent of Property', AgentData::get()->map('ID', 'Name')),
 			CurrencyField::create('PricePerNight', 'Price (per night)'),
-			DropdownField::create('RegionID', 'Region')->setSource(Region::get()->map('ID', 'Title'))->setEmptyString('-- Select Region --'),
+			DropdownField::create('RegionID', 'Region')->setSource(RegionData::get()->map('ID', 'Title'))->setEmptyString('-- Select Region --'),
 			DropdownField::create('CategoryID', 'Category')->setSource(PropertyCategoryData::get()->map('ID', 'Title'))->setEmptyString('-- Select Category --'),
 			TextField::create('Address', 'Road Address'),
 			DropdownField::create('Province', 'Province')->setSource($this->getProvinceOptions())->setEmptyString('-- Select a Province --'),

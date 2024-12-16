@@ -9,9 +9,9 @@ class ArticlePage extends Page
 	);
 
 	private static $has_one = array(
-		'Photo'    => 'Image',
-		'Brochure' => 'File',
-		'Region'   => 'Region'
+		'Photo'      => 'Image',
+		'Brochure'   => 'File',
+		'RegionData' => 'RegionData'
 	);
 
 	private static $many_many = array(
@@ -30,7 +30,7 @@ class ArticlePage extends Page
 		$fields->addFieldToTab('Root.Main', DateField::create('Date', 'Date of Article')->setConfig('showcalendar', true), 'Content');
 		$fields->addFieldToTab('Root.Main', TextAreaField::create('Teaser', 'Teaser or Summary'), 'Content');
 		$fields->addFieldToTab('Root.Main', TextField::create('Author', 'Author of Article')->setDescription('If multiple author, seperate with commas')->setMaxLength(50), 'Content');
-		$fields->addFieldToTab('Root.Main', DropdownField::create('RegionID', 'Region', Region::get()->map('ID', 'Title'))->setEmptyString('-- None --'), 'Content');
+		$fields->addFieldToTab('Root.Main', DropdownField::create('RegionID', 'Region', RegionData::get()->map('ID', 'Title'))->setEmptyString('-- None --'), 'Content');
 		$fields->addFieldToTab('Root.Categories', CheckboxSetField::create('Categories', 'Categories of Article', $this->Parent()->Categories()->map('ID', 'Title')));
 		$fields->addFieldToTab('Root.Attachments', $photo = UploadField::create('Photo'));
 		$fields->addFieldToTab('Root.Attachments', $brochure = UploadField::create('Brochure', 'Format pdf only'));

@@ -133,7 +133,7 @@ class ArticleHolder_Controller extends Page_Controller
 
 	public function region(SS_HTTPRequest $r)
 	{
-		$region = Region::get()->filter('URLSegment', $r->param('ID'))->first();
+		$region = RegionData::get()->filter('URLSegment', $r->param('ID'))->first();
 
 		if (!$region) {
 			return $this->httpError(404, 'That region was not found');

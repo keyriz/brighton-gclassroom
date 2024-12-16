@@ -1,6 +1,6 @@
 <?php
 
-class Region extends DataObject
+class RegionData extends DataObject
 {
 	private static $db = array(
 		'Title'       => 'Varchar',
@@ -23,7 +23,7 @@ class Region extends DataObject
 		'Description'   => 'Description',
 	);
 
-	public function getGridThumbnail()
+	public function GetGridThumbnail()
 	{
 		if ($this->Photo()->exists()) {
 			return $this->Photo()->SetWidth(100);
@@ -32,7 +32,7 @@ class Region extends DataObject
 		return 'No Image';
 	}
 
-	public function getCMSFields()
+	public function GetCMSFields()
 	{
 		$fields = FieldList::create(
 			TextField::create('Title'),
@@ -47,14 +47,14 @@ class Region extends DataObject
 		return $fields;
 	}
 
-	public function onBeforeWrite()
+	public function OnBeforeWrite()
 	{
 		parent::onBeforeWrite();
 
 		if (!$this->URLSegment || $this->URLSegment == 'new-region') {
-			$this->URLSegment = $this->generateURLSegment($this->Title);
+			$this->URLSegment = $this->GenerateURLSegment($this->Title);
 		} else {
-			$this->URLSegment = $this->generateURLSegment($this->URLSegment);
+			$this->URLSegment = $this->GenerateURLSegment($this->URLSegment);
 		}
 
 		// Ensure uniqueness
@@ -66,7 +66,7 @@ class Region extends DataObject
 		}
 	}
 
-	public function generateURLSegment($title)
+	public function GenerateURLSegment($title)
 	{
 		$filter = URLSegmentFilter::create();
 		return $filter->filter($title);
