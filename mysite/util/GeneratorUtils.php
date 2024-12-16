@@ -2,7 +2,7 @@
 
 class GeneratorUtils
 {
-	public static function Slug($string)
+	public static function slug($string)
 	{
 		$filter = URLSegmentFilter::create();
 		return $filter->filter($string);

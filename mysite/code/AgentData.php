@@ -56,9 +56,9 @@ class AgentData extends DataObject
 		parent::onBeforeWrite();
 
 		if (!$this->URLSegment || $this->URLSegment == 'new-agent') {
-			$this->URLSegment = GeneratorUtils::Slug($this->Name);
+			$this->URLSegment = GeneratorUtils::slug($this->Name);
 		} else {
-			$this->URLSegment = GeneratorUtils::Slug($this->URLSegment);
+			$this->URLSegment = GeneratorUtils::slug($this->URLSegment);
 		}
 
 		// Ensure uniqueness

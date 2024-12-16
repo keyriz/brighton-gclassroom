@@ -28,9 +28,9 @@ class ArticleCategoryData extends DataObject
 		parent::onBeforeWrite();
 
 		if (!$this->URLSegment || $this->URLSegment == 'new-article-category') {
-			$this->URLSegment = GeneratorUtils::Slug($this->Title);
+			$this->URLSegment = GeneratorUtils::slug($this->Title);
 		} else {
-			$this->URLSegment = GeneratorUtils::Slug($this->URLSegment);
+			$this->URLSegment = GeneratorUtils::slug($this->URLSegment);
 		}
 
 		// Ensure uniqueness
