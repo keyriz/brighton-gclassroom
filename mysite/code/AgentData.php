@@ -1,6 +1,6 @@
 <?php
 
-class Agent extends DataObject
+class AgentData extends DataObject
 {
 	private static $db = array(
 		'Name'        => 'Varchar',

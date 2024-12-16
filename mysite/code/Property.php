@@ -26,7 +26,7 @@ class Property extends DataObject
 		'PrimaryPhoto'       => 'Image',
 		'Category'           => 'PropertyCategory',
 		'PropertySearchPage' => 'PropertySearchPage',
-		'Agent'              => 'Agent',
+		'Agent'              => 'AgentData',
 	);
 
 	private static $many_many = array(
@@ -70,14 +70,14 @@ class Property extends DataObject
 			TextField::create('URLSegment', 'URL Segment (Slug)')->setDisabled(true)->setAttribute('placeholder', 'Auto generate content'),
 			TextAreaField::create('Summary', 'Summary or Short Description'),
 			CheckboxSetField::create('Types', 'Types of Property', PropertyType::get()->map('ID', 'Title')),
-			DropdownField::create('AgentID', 'Agent of Property', Agent::get()->map('ID', 'Name')),
+			DropdownField::create('AgentID', 'Agent of Property', AgentData::get()->map('ID', 'Name')),
 			CurrencyField::create('PricePerNight', 'Price (per night)'),
 			DropdownField::create('RegionID', 'Region')->setSource(Region::get()->map('ID', 'Title'))->setEmptyString('-- Select Region --'),
 			DropdownField::create('CategoryID', 'Category')->setSource(PropertyCategory::get()->map('ID', 'Title'))->setEmptyString('-- Select Category --'),
 			TextField::create('Address', 'Road Address'),
-			DropdownField::create('Province', 'Province', array())->setEmptyString('-- Select a province --'),
-			DropdownField::create('City', 'City', array())->setEmptyString('-- Select a city --'),
-			DropdownField::create('District', 'District', array())->setEmptyString('-- Select a district --'),
+			DropdownField::create('Province', 'Province')->setSource($this->getProvinceOptions())->setEmptyString('-- Select a Province --'),
+			DropdownField::create('City', 'City')->setEmptyString('-- Select a City --'),
+			DropdownField::create('District', 'District')->setEmptyString('-- Select a District --'),
 			CheckboxField::create('FeaturedOnHomepage', 'Featured On Homepage'),
 		));
 
@@ -100,6 +100,33 @@ class Property extends DataObject
 		return $fields;
 	}
 
+	public function getProvinceOptions()
+	{
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, "http://api.caller/province");
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+		$response = curl_exec($ch);
+
+		if (curl_errno($ch)) {
+			curl_close($ch);
+			return null;
+		}
+
+		curl_close($ch);
+
+		$data = json_decode($response, true);
+		$data = $data['data'];
+
+		return array_reduce($data, function ($carry, $item) {
+			$carry[$item['name']] = $item['name'];
+			return $carry;
+		}, array());
+	}
+
 	public function onBeforeWrite()
 	{
 		parent::onBeforeWrite();
@@ -108,6 +135,11 @@ class Property extends DataObject
 			$this->URLSegment = $this->generateURLSegment($this->Title);
 		} else {
 			$this->URLSegment = $this->generateURLSegment($this->URLSegment);
+		}
+
+		if ($this->Province) {
+			$explode        = explode(';', $this->Province);
+			$this->Province = $explode[1];
 		}
 
 		// Ensure uniqueness

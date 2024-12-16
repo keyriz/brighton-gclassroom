@@ -116,7 +116,7 @@ class ArticleHolder_Controller extends Page_Controller
 
 	public function category(SS_HTTPRequest $r)
 	{
-		$category = ArticleCategory::get()->filter('URLSegment', $r->param('ID'))->first();
+		$category = ArticleCategoryData::get()->filter('URLSegment', $r->param('ID'))->first();
 
 		if (!$category) {
 			return $this->httpError(404, 'That category was not found');

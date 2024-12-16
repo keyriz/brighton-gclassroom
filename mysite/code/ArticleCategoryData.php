@@ -1,6 +1,6 @@
 <?php
 
-class ArticleCategory extends DataObject
+class ArticleCategoryData extends DataObject
 {
 	private static $db = array(
 		'Title'      => 'Varchar',
