@@ -52,9 +52,9 @@ class RegionData extends DataObject
 		parent::onBeforeWrite();
 
 		if (!$this->URLSegment || $this->URLSegment == 'new-region') {
-			$this->URLSegment = $this->GenerateURLSegment($this->Title);
+			$this->URLSegment = GeneratorUtils::URLSegment($this->Title);
 		} else {
-			$this->URLSegment = $this->GenerateURLSegment($this->URLSegment);
+			$this->URLSegment = GeneratorUtils::URLSegment($this->URLSegment);
 		}
 
 		// Ensure uniqueness
@@ -64,12 +64,6 @@ class RegionData extends DataObject
 			$this->URLSegment = $original . '-' . $count;
 			$count++;
 		}
-	}
-
-	public function GenerateURLSegment($title)
-	{
-		$filter = URLSegmentFilter::create();
-		return $filter->filter($title);
 	}
 
 	public function LinkingMode()

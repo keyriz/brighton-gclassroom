@@ -132,9 +132,9 @@ class PropertyData extends DataObject
 		parent::onBeforeWrite();
 
 		if (!$this->URLSegment || $this->URLSegment == 'new-property') {
-			$this->URLSegment = $this->generateURLSegment($this->Title);
+			$this->URLSegment = GeneratorUtils::URLSegment($this->Title);
 		} else {
-			$this->URLSegment = $this->generateURLSegment($this->URLSegment);
+			$this->URLSegment = GeneratorUtils::URLSegment($this->URLSegment);
 		}
 
 		if ($this->Province) {
@@ -149,12 +149,6 @@ class PropertyData extends DataObject
 			$this->URLSegment = $original . '-' . $count;
 			$count++;
 		}
-	}
-
-	public function GenerateURLSegment($title)
-	{
-		$filter = URLSegmentFilter::create();
-		return $filter->filter($title);
 	}
 
 	public function GetFormattedPrice()

@@ -28,9 +28,9 @@ class ArticleCategoryData extends DataObject
 		parent::onBeforeWrite();
 
 		if (!$this->URLSegment || $this->URLSegment == 'new-article-category') {
-			$this->URLSegment = $this->generateURLSegment($this->Title);
+			$this->URLSegment = GeneratorUtils::URLSegment($this->Title);
 		} else {
-			$this->URLSegment = $this->generateURLSegment($this->URLSegment);
+			$this->URLSegment = GeneratorUtils::URLSegment($this->URLSegment);
 		}
 
 		// Ensure uniqueness
@@ -40,12 +40,6 @@ class ArticleCategoryData extends DataObject
 			$this->URLSegment = $original . '-' . $count;
 			$count++;
 		}
-	}
-
-	public function GenerateURLSegment($title)
-	{
-		$filter = URLSegmentFilter::create();
-		return $filter->filter($title);
 	}
 
 	public function Link()

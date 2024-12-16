@@ -55,9 +55,9 @@ class AgentData extends DataObject
 		parent::onBeforeWrite();
 
 		if (!$this->URLSegment || $this->URLSegment == 'new-agent') {
-			$this->URLSegment = $this->generateURLSegment($this->Name);
+			$this->URLSegment = GeneratorUtils::URLSegment($this->Name);
 		} else {
-			$this->URLSegment = $this->generateURLSegment($this->URLSegment);
+			$this->URLSegment = GeneratorUtils::URLSegment($this->URLSegment);
 		}
 
 		// Ensure uniqueness
@@ -67,12 +67,6 @@ class AgentData extends DataObject
 			$this->URLSegment = $original . '-' . $count;
 			$count++;
 		}
-	}
-
-	public function GenerateURLSegment($title)
-	{
-		$filter = URLSegmentFilter::create();
-		return $filter->filter($title);
 	}
 
 	public function GetPhoneWhatsapp()
