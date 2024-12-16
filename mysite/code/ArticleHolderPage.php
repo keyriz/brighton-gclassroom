@@ -1,6 +1,6 @@
 <?php
 
-class ArticleHolder extends Page
+class ArticleHolderPage extends Page
 {
 	private static $has_many = array(
 		'Categories' => 'ArticleCategoryData'
@@ -75,7 +75,7 @@ class ArticleHolder extends Page
 	}
 }
 
-class ArticleHolder_Controller extends Page_Controller
+class ArticleHolderPage_Controller extends Page_Controller
 {
 	private static $allowed_actions = array(
 		'category',

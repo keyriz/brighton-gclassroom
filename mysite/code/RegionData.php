@@ -79,7 +79,7 @@ class RegionData extends DataObject
 
 	public function ArticlesLink()
 	{
-		$page = ArticleHolder::get()->first();
+		$page = ArticleHolderPage::get()->first();
 
 		if ($page) {
 			return $page->Link('region/' . $this->URLSegment);

@@ -8,7 +8,7 @@ class ArticleCategoryData extends DataObject
 	);
 
 	private static $has_one = array(
-		'ArticleHolder' => 'ArticleHolder',
+		'ArticleHolder' => 'ArticleHolderPage',
 	);
 
 	private static $belongs_many_many = array(
