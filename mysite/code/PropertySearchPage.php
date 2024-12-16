@@ -118,8 +118,8 @@ class PropertySearchPage_Controller extends Page_Controller
 		}
 
 		return array(
-			'PropertyData' => $property,
-			'Title'        => $property->Title
+			'Property' => $property,
+			'Title'    => $property->Title
 		);
 	}
 

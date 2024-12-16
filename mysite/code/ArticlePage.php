@@ -9,9 +9,9 @@ class ArticlePage extends Page
 	);
 
 	private static $has_one = array(
-		'Photo'      => 'Image',
-		'Brochure'   => 'File',
-		'RegionData' => 'RegionData'
+		'Photo'    => 'Image',
+		'Brochure' => 'File',
+		'Region'   => 'RegionData'
 	);
 
 	private static $many_many = array(

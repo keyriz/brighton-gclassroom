@@ -22,7 +22,7 @@ class PropertyData extends DataObject
 	);
 
 	private static $has_one = array(
-		'RegionData'         => 'RegionData',
+		'Region'             => 'RegionData',
 		'PrimaryPhoto'       => 'Image',
 		'Category'           => 'PropertyCategoryData',
 		'PropertySearchPage' => 'PropertySearchPage',
@@ -36,7 +36,7 @@ class PropertyData extends DataObject
 
 	private static $summary_fields = array(
 		'Title'                   => 'Title',
-		'RegionData.Title'        => 'RegionData',
+		'Region.Title'            => 'Region',
 		'PricePerNight.Nice'      => 'Price',
 		'FeaturedOnHomepage.Nice' => 'Featured?',
 	);
