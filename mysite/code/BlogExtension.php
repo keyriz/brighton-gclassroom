@@ -5,7 +5,8 @@ class BlogExtension extends DataExtension
 	/**
 	 * @return DataList
 	 */
-	public function getFeaturedBlogPosts() {
+	public function GetFeaturedBlogPosts()
+	{
 		$controller = Controller::curr();
 		$parameters = $controller->getRequest()->allParams();
 
@@ -28,10 +29,11 @@ class BlogExtension extends DataExtension
 	 *
 	 * @return DataList
 	 */
-	public function updateGetBlogPosts(DataList &$posts) {
+	public function UpdateGetBlogPosts(DataList &$posts)
+	{
 		$controller = Controller::curr();
-		$request = $controller->getRequest();
-		$filter = $request->getVar('featured');
+		$request    = $controller->getRequest();
+		$filter     = $request->getVar('featured');
 
 		if ($filter) {
 			$posts = $posts->filter(array('IsFeatured' => true));
@@ -43,10 +45,11 @@ class BlogExtension extends DataExtension
 	 *
 	 * @return boolean
 	 */
-	public function getBlogFeatured() {
+	public function UetBlogFeatured()
+	{
 		$c = Controller::curr()->getRequest();
 
-		if($c->getVar('featured')) {
+		if ($c->getVar('featured')) {
 			return true;
 		}
 
