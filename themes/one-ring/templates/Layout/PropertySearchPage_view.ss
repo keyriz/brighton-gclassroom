@@ -68,7 +68,7 @@
 						<div class="card mb-8 float-right flex flex-col items-center max-w-72 shadow-lg bg-warning">
 							<img class="img-responsive img-circle" width="100" src="$ThemeDir/images/comment-man.jpg">
 							<p class="text-lg">$Property.Agent.Title</p>
-							<a href="https://wa.me/$Property.Agent.getPhoneWhatsapp" target="_blank" class="text-lg">$Property.Agent.Phone</a>
+							<a href="https://wa.me/$Property.Agent.GetPhoneWhatsapp" target="_blank" class="text-lg">$Property.Agent.Phone</a>
 						</div>
 					</div>
                     <%--                                                <div class="position-relative" style="width: 100%; height: 800px">--%>

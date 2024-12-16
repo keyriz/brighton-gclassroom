@@ -25,7 +25,7 @@ class AgentData extends DataObject
 		'Description'   => 'Description',
 	);
 
-	public function getGridThumbnail()
+	public function GetGridThumbnail()
 	{
 		if ($this->Photo()->exists()) {
 			return $this->Photo()->SetWidth(100);
@@ -34,7 +34,7 @@ class AgentData extends DataObject
 		return 'No Image';
 	}
 
-	public function getCMSFields()
+	public function GetCMSFields()
 	{
 		$fields = FieldList::create(
 			TextField::create('Name'),
@@ -50,7 +50,7 @@ class AgentData extends DataObject
 		return $fields;
 	}
 
-	public function onBeforeWrite()
+	public function OnBeforeWrite()
 	{
 		parent::onBeforeWrite();
 
@@ -69,13 +69,13 @@ class AgentData extends DataObject
 		}
 	}
 
-	public function generateURLSegment($title)
+	public function GenerateURLSegment($title)
 	{
 		$filter = URLSegmentFilter::create();
 		return $filter->filter($title);
 	}
 
-	public function getPhoneWhatsapp()
+	public function GetPhoneWhatsapp()
 	{
 		return preg_replace('/^08/', '628', $this->Phone);
 	}
