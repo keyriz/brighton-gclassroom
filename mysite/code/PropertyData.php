@@ -132,9 +132,9 @@ class PropertyData extends DataObject
 		parent::onBeforeWrite();
 
 		if (!$this->URLSegment || $this->URLSegment == 'new-property') {
-			$this->URLSegment = GeneratorUtils::URLSegment($this->Title);
+			$this->URLSegment = GeneratorUtils::Slug($this->Title);
 		} else {
-			$this->URLSegment = GeneratorUtils::URLSegment($this->URLSegment);
+			$this->URLSegment = GeneratorUtils::Slug($this->URLSegment);
 		}
 
 		if ($this->Province) {

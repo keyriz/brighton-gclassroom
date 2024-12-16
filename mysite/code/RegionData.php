@@ -52,9 +52,9 @@ class RegionData extends DataObject
 		parent::onBeforeWrite();
 
 		if (!$this->URLSegment || $this->URLSegment == 'new-region') {
-			$this->URLSegment = GeneratorUtils::URLSegment($this->Title);
+			$this->URLSegment = GeneratorUtils::Slug($this->Title);
 		} else {
-			$this->URLSegment = GeneratorUtils::URLSegment($this->URLSegment);
+			$this->URLSegment = GeneratorUtils::Slug($this->URLSegment);
 		}
 
 		// Ensure uniqueness
