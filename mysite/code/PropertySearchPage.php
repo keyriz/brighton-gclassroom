@@ -3,7 +3,7 @@
 class PropertySearchPage extends Page
 {
 	private static $has_many = array(
-		'Properties' => 'Property'
+		'Properties' => 'PropertyData'
 	);
 }
 
@@ -16,7 +16,7 @@ class PropertySearchPage_Controller extends Page_Controller
 
 	public function index(SS_HTTPRequest $request)
 	{
-		$properties = Property::get();
+		$properties = PropertyData::get();
 		$filters    = ArrayList::create();
 
 		if ($search = $request->getVar('Keywords')) {
@@ -111,15 +111,15 @@ class PropertySearchPage_Controller extends Page_Controller
 			return $this->httpError(404, "Property not found");
 		}
 
-		$property = Property::get()->filter('URLSegment', $urlSegment)->first();
+		$property = PropertyData::get()->filter('URLSegment', $urlSegment)->first();
 
 		if (!$property) {
 			return $this->httpError(404, "Property not found");
 		}
 
 		return array(
-			'Property' => $property,
-			'Title'    => $property->Title
+			'PropertyData' => $property,
+			'Title'        => $property->Title
 		);
 	}
 

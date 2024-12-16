@@ -21,7 +21,7 @@
 					<div class="col-xs-12 d-sm-none">
 						<div class="card mb-8 float-right flex flex-col shadow-lg bg-primary">
 							<div class="font-bold text-lg flex gap-2"><% loop $Property.Types %><p>For $Title</p><% if not $Last %> / <% end_if %><% end_loop %></div>
-							<h2>$Property.getFormattedPrice</h2>
+							<h2>$Property.GetFormattedPrice</h2>
 							<p class="text-sm">/ Per Night</p>
 						</div>
 					</div>
@@ -59,13 +59,13 @@
 						</div>
 						<div class="mb-8">
 							<h4 class="mb-4">Address</h4>
-                            $Property.getAddressCensored
+                            $Property.GetAddressCensored
 						</div>
 					</div>
 					<div class="col-sm-4 property-price">
 						<div class="card mb-8 float-right flex flex-col items-end max-w-72 shadow-lg bg-primary d-none d-sm-block">
 							<div class="font-bold text-lg flex gap-2"><% loop $Property.Types %><p>For $Title</p><% if not $Last %> / <% end_if %><% end_loop %></div>
-							<h2>$Property.getFormattedPrice</h2>
+							<h2>$Property.GetFormattedPrice</h2>
 							<p class="text-sm">/ Per Night</p>
 						</div>
 						<div class="card mb-8 float-right flex flex-col items-center max-w-72 shadow-lg bg-warning">

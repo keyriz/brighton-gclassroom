@@ -1,6 +1,6 @@
 <?php
 
-class Property extends DataObject
+class PropertyData extends DataObject
 {
 	private static $db = array(
 		'Title'              => 'Varchar',
@@ -24,14 +24,14 @@ class Property extends DataObject
 	private static $has_one = array(
 		'Region'             => 'Region',
 		'PrimaryPhoto'       => 'Image',
-		'Category'           => 'PropertyCategory',
+		'Category'           => 'PropertyCategoryData',
 		'PropertySearchPage' => 'PropertySearchPage',
 		'Agent'              => 'AgentData',
 	);
 
 	private static $many_many = array(
-		'Types'      => 'PropertyType',
-		'Facilities' => 'PropertyFacility',
+		'Types'      => 'PropertyTypeData',
+		'Facilities' => 'PropertyFacilityData',
 	);
 
 	private static $summary_fields = array(
@@ -41,7 +41,7 @@ class Property extends DataObject
 		'FeaturedOnHomepage.Nice' => 'Featured?',
 	);
 
-	public function searchableFields()
+	public function SearchableFields()
 	{
 		return array(
 			'Title'              => array(
@@ -61,7 +61,7 @@ class Property extends DataObject
 		);
 	}
 
-	public function getCMSFields()
+	public function GetCMSFields()
 	{
 		$fields = FieldList::create(TabSet::create('Root'));
 
@@ -69,11 +69,11 @@ class Property extends DataObject
 			TextField::create('Title', 'Title'),
 			TextField::create('URLSegment', 'URL Segment (Slug)')->setDisabled(true)->setAttribute('placeholder', 'Auto generate content'),
 			TextAreaField::create('Summary', 'Summary or Short Description'),
-			CheckboxSetField::create('Types', 'Types of Property', PropertyType::get()->map('ID', 'Title')),
+			CheckboxSetField::create('Types', 'Types of Property', PropertyTypeData::get()->map('ID', 'Title')),
 			DropdownField::create('AgentID', 'Agent of Property', AgentData::get()->map('ID', 'Name')),
 			CurrencyField::create('PricePerNight', 'Price (per night)'),
 			DropdownField::create('RegionID', 'Region')->setSource(Region::get()->map('ID', 'Title'))->setEmptyString('-- Select Region --'),
-			DropdownField::create('CategoryID', 'Category')->setSource(PropertyCategory::get()->map('ID', 'Title'))->setEmptyString('-- Select Category --'),
+			DropdownField::create('CategoryID', 'Category')->setSource(PropertyCategoryData::get()->map('ID', 'Title'))->setEmptyString('-- Select Category --'),
 			TextField::create('Address', 'Road Address'),
 			DropdownField::create('Province', 'Province')->setSource($this->getProvinceOptions())->setEmptyString('-- Select a Province --'),
 			DropdownField::create('City', 'City')->setEmptyString('-- Select a City --'),
@@ -86,7 +86,7 @@ class Property extends DataObject
 			DropdownField::create('Bathrooms', 'Bathrooms')->setSource(ArrayLib::valuekey(range(1, 10))),
 			NumericField::create('LandArea', 'Land Area (in meters)'),
 			NumericField::create('BuildingArea', 'Building Area (in meters)'),
-			CheckboxSetField::create('Facilities', 'Facilities of Property', PropertyFacility::get()->map('ID', 'Title')),
+			CheckboxSetField::create('Facilities', 'Facilities of Property', PropertyFacilityData::get()->map('ID', 'Title')),
 			HtmlEditorField::create('Description'),
 		));
 
@@ -100,7 +100,7 @@ class Property extends DataObject
 		return $fields;
 	}
 
-	public function getProvinceOptions()
+	public function GetProvinceOptions()
 	{
 		$ch = curl_init();
 
@@ -127,7 +127,7 @@ class Property extends DataObject
 		}, array());
 	}
 
-	public function onBeforeWrite()
+	public function OnBeforeWrite()
 	{
 		parent::onBeforeWrite();
 
@@ -145,24 +145,24 @@ class Property extends DataObject
 		// Ensure uniqueness
 		$count    = 2;
 		$original = $this->URLSegment;
-		while (Property::get()->filter('URLSegment', $this->URLSegment)->exclude('ID', $this->ID)->exists()) {
+		while (PropertyData::get()->filter('URLSegment', $this->URLSegment)->exclude('ID', $this->ID)->exists()) {
 			$this->URLSegment = $original . '-' . $count;
 			$count++;
 		}
 	}
 
-	public function generateURLSegment($title)
+	public function GenerateURLSegment($title)
 	{
 		$filter = URLSegmentFilter::create();
 		return $filter->filter($title);
 	}
 
-	public function getFormattedPrice()
+	public function GetFormattedPrice()
 	{
 		return '$' . number_format($this->PricePerNight, 2);
 	}
 
-	public function getAddressCensored()
+	public function GetAddressCensored()
 	{
 		return preg_replace_callback('/\d+/', function ($matches) {
 			// Replace numbers with up to 3 '*'

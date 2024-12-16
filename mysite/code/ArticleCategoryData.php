@@ -36,7 +36,7 @@ class ArticleCategoryData extends DataObject
 		// Ensure uniqueness
 		$count    = 2;
 		$original = $this->URLSegment;
-		while (Property::get()->filter('URLSegment', $this->URLSegment)->exclude('ID', $this->ID)->exists()) {
+		while (PropertyData::get()->filter('URLSegment', $this->URLSegment)->exclude('ID', $this->ID)->exists()) {
 			$this->URLSegment = $original . '-' . $count;
 			$count++;
 		}

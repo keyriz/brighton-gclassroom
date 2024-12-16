@@ -15,7 +15,7 @@ class AgentData extends DataObject
 	);
 
 	private static $has_many = array(
-		'Properties' => 'Property'
+		'Properties' => 'PropertyData'
 	);
 
 	private static $summary_fields = array(
@@ -63,7 +63,7 @@ class AgentData extends DataObject
 		// Ensure uniqueness
 		$count    = 2;
 		$original = $this->URLSegment;
-		while (Property::get()->filter('URLSegment', $this->URLSegment)->exclude('ID', $this->ID)->exists()) {
+		while (PropertyData::get()->filter('URLSegment', $this->URLSegment)->exclude('ID', $this->ID)->exists()) {
 			$this->URLSegment = $original . '-' . $count;
 			$count++;
 		}

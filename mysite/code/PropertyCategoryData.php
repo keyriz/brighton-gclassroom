@@ -1,16 +1,16 @@
 <?php
 
-class PropertyType extends DataObject
+class PropertyCategoryData extends DataObject
 {
 	private static $db = array(
 		'Title' => 'Varchar',
 	);
 
-	private static $belongs_many_many = array(
-		'Properties' => 'Property',
+	private static $has_many = array(
+		'Properties' => 'PropertyData',
 	);
 
-	public function getCMSFields()
+	public function GetCMSFields()
 	{
 		return FieldList::create(
 			TextField::create('Title')
@@ -20,7 +20,7 @@ class PropertyType extends DataObject
 	public function Link()
 	{
 		return $this->Property()->Link(
-			'property/type/' . $this->ID
+			'property/category/' . $this->ID
 		);
 	}
 }

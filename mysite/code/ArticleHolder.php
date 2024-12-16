@@ -96,7 +96,7 @@ class ArticleHolder_Controller extends Page_Controller
 
 	public function index(SS_HTTPRequest $request)
 	{
-		$articles = Property::get();
+		$articles = PropertyData::get();
 
 		$paginatedArticles = PaginatedList::create(
 			$articles,
