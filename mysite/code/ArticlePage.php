@@ -97,7 +97,7 @@ class ArticlePage_Controller extends Page_Controller
 				TextAreaField::create('Comment', '')
 			),
 			FieldList::create(
-				FormAction::create('commentformhandler', 'Post Comment')->setUseButtonTag(true)->addExtraClass('btn btn-default-color btn-lg')
+				FormAction::create('CommentDo', 'Post Comment')->setUseButtonTag(true)->addExtraClass('btn btn-default-color btn-lg')
 			),
 			RequiredFields::create('Name', 'Email', 'Comment')
 		)->addExtraClass('form-style');
@@ -111,7 +111,7 @@ class ArticlePage_Controller extends Page_Controller
 		return $data ? $form->loadDataFrom($data) : $form;
 	}
 
-	public function commentformhandler($data, $form)
+	public function CommentDo($data, $form)
 	{
 		Session::set("FormData.{$form->getName()}.data", $data);
 
