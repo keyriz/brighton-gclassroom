@@ -3,7 +3,7 @@
 class ArticleHolder extends Page
 {
 	private static $has_many = array(
-		'Categories' => 'ArticleCategory'
+		'Categories' => 'ArticleCategoryData'
 	);
 
 	private static $allowed_children = array(

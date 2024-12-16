@@ -15,7 +15,7 @@ class ArticlePage extends Page
 	);
 
 	private static $many_many = array(
-		'Categories' => 'ArticleCategory',
+		'Categories' => 'ArticleCategoryData',
 	);
 
 	private static $has_many = array(
