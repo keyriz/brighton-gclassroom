@@ -15,7 +15,7 @@ class ArticleCategoryData extends DataObject
 		'Articles' => 'ArticlePage',
 	);
 
-	public function getCMSFields()
+	public function GetCMSFields()
 	{
 		return FieldList::create(
 			TextField::create('Title'),
@@ -23,7 +23,7 @@ class ArticleCategoryData extends DataObject
 		);
 	}
 
-	public function onBeforeWrite()
+	public function OnBeforeWrite()
 	{
 		parent::onBeforeWrite();
 
@@ -42,7 +42,7 @@ class ArticleCategoryData extends DataObject
 		}
 	}
 
-	public function generateURLSegment($title)
+	public function GenerateURLSegment($title)
 	{
 		$filter = URLSegmentFilter::create();
 		return $filter->filter($title);

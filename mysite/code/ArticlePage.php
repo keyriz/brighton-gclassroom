@@ -19,12 +19,12 @@ class ArticlePage extends Page
 	);
 
 	private static $has_many = array(
-		'Comments' => 'ArticleComment',
+		'Comments' => 'ArticleCommentData',
 	);
 
 	private static $can_be_root = false;
 
-	public function getCMSFields()
+	public function GetCMSFields()
 	{
 		$fields = parent::getCMSFields();
 		$fields->addFieldToTab('Root.Main', DateField::create('Date', 'Date of Article')->setConfig('showcalendar', true), 'Content');
@@ -52,7 +52,7 @@ class ArticlePage extends Page
 		}
 	}
 
-	public function getBrochureExtension()
+	public function GetBrochureExtension()
 	{
 		if ($this->Brochure()->exists()) {
 			return $this->Brochure()->getExtension(); // SilverStripe 3 Brochure method
@@ -60,7 +60,7 @@ class ArticlePage extends Page
 		return null;
 	}
 
-	public function getFormattedBrochureSize()
+	public function GetFormattedBrochureSize()
 	{
 		if ($this->Brochure()->exists()) {
 			$sizeInBytes = $this->Brochure()->getAbsoluteSize();
@@ -69,7 +69,7 @@ class ArticlePage extends Page
 		return null;
 	}
 
-	private function formatBytes($bytes, $precision = 2)
+	private function FormatBytes($bytes, $precision = 2)
 	{
 		$units = array('B', 'KB', 'MB', 'GB', 'TB');
 		$pow   = floor(($bytes ? log($bytes) : 0) / log(1024));
@@ -83,10 +83,10 @@ class ArticlePage extends Page
 class ArticlePage_Controller extends Page_Controller
 {
 	private static $allowed_actions = array(
-		'CommentForm'
+		'commentform'
 	);
 
-	public function CommentForm()
+	public function commentform()
 	{
 		$form = Form::create(
 			$this,
@@ -97,7 +97,7 @@ class ArticlePage_Controller extends Page_Controller
 				TextAreaField::create('Comment', '')
 			),
 			FieldList::create(
-				FormAction::create('handleComment', 'Post Comment')->setUseButtonTag(true)->addExtraClass('btn btn-default-color btn-lg')
+				FormAction::create('commentformhandler', 'Post Comment')->setUseButtonTag(true)->addExtraClass('btn btn-default-color btn-lg')
 			),
 			RequiredFields::create('Name', 'Email', 'Comment')
 		)->addExtraClass('form-style');
@@ -111,7 +111,7 @@ class ArticlePage_Controller extends Page_Controller
 		return $data ? $form->loadDataFrom($data) : $form;
 	}
 
-	public function handleComment($data, $form)
+	public function commentformhandler($data, $form)
 	{
 		Session::set("FormData.{$form->getName()}.data", $data);
 
@@ -122,7 +122,7 @@ class ArticlePage_Controller extends Page_Controller
 			return $this->redirectBack();
 		}
 
-		$comment                = ArticleComment::create();
+		$comment                = ArticleCommentData::create();
 		$comment->ArticlePageID = $this->ID;
 		$form->saveInto($comment);
 		$comment->write();

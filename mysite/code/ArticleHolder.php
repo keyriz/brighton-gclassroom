@@ -10,7 +10,7 @@ class ArticleHolder extends Page
 		'ArticlePage'
 	);
 
-	public function getCMSFields()
+	public function GetCMSFields()
 	{
 		$fields = parent::getCMSFields();
 		$fields->addFieldToTab('Root.Categories', GridField::create(
